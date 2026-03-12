@@ -386,12 +386,726 @@
   },
   "metadata": {
     "og:site_name": "SmartLead API Documentation",
-    "og:description": "Automate cold email outreach with the SmartLead API — manage campaigns, leads, email accounts, sequences, and analytics programmatically",
+    "og:description": "Automate cold email outreach with the SmartLead API \u2014 manage campaigns, leads, email accounts, sequences, and analytics programmatically",
     "og:image": "https://api.smartlead.ai/smartleadHighResLogoSL.png",
     "twitter:site": "@smartlead_ai"
   },
   "feedback": {
     "thumbsRating": true,
     "suggestEdit": true
-  }
+  },
+  "redirects": [
+    {
+      "source": "/reference/getting-started",
+      "destination": "/introduction"
+    },
+    {
+      "source": "/reference/intro-authentication",
+      "destination": "/api-reference/campaigns/get-all"
+    },
+    {
+      "source": "/reference/my-requests",
+      "destination": "/api-reference/campaigns/get-all"
+    },
+    {
+      "source": "/reference/welcome",
+      "destination": "/introduction"
+    },
+    {
+      "source": "/reference/authentication",
+      "destination": "/api-reference/campaigns/get-all"
+    },
+    {
+      "source": "/reference/references",
+      "destination": "/api-reference/campaigns/get-all"
+    },
+    {
+      "source": "/reference/rate-limits",
+      "destination": "/api-reference/campaigns/get-all"
+    },
+    {
+      "source": "/reference/create-campaign",
+      "destination": "/api-reference/campaigns/create"
+    },
+    {
+      "source": "/reference/update-campaign-schedule",
+      "destination": "/api-reference/campaigns/update-schedule"
+    },
+    {
+      "source": "/reference/update-campaign-general-settings",
+      "destination": "/api-reference/campaigns/update-settings"
+    },
+    {
+      "source": "/reference/get-campaign-by-id",
+      "destination": "/api-reference/campaigns/get-by-id"
+    },
+    {
+      "source": "/reference/save-campaign-sequence",
+      "destination": "/api-reference/campaigns/update-sequences"
+    },
+    {
+      "source": "/reference/fetch-campaign-sequence-by-campaign-id",
+      "destination": "/api-reference/campaigns/get-sequences"
+    },
+    {
+      "source": "/reference/patch-campaign-status",
+      "destination": "/api-reference/campaigns/update-status"
+    },
+    {
+      "source": "/reference/list-all-campaigns",
+      "destination": "/api-reference/campaigns/get-all"
+    },
+    {
+      "source": "/reference/fetch-all-campaigns-using-lead-id",
+      "destination": "/api-reference/campaigns/get-all"
+    },
+    {
+      "source": "/reference/export-data-from-a-campaign",
+      "destination": "/api-reference/campaigns/export-leads"
+    },
+    {
+      "source": "/reference/delete-campaign",
+      "destination": "/api-reference/campaigns/delete"
+    },
+    {
+      "source": "/reference/fetch-campaign-analytics-by-date-range",
+      "destination": "/api-reference/campaigns/get-analytics-by-date"
+    },
+    {
+      "source": "/reference/get-campaign-sequence-analytics",
+      "destination": "/api-reference/campaigns/get-analytics"
+    },
+    {
+      "source": "/reference/create-subsequence",
+      "destination": "/api-reference/campaigns/create-subsequence"
+    },
+    {
+      "source": "/reference/fetch-lead-categori-1",
+      "destination": "/api-reference/leads/categories"
+    },
+    {
+      "source": "/reference/fetch-lead-categori-1-2",
+      "destination": "/api-reference/leads/categories"
+    },
+    {
+      "source": "/reference/push-leadslist-to-campaign",
+      "destination": "/api-reference/leads/add-to-campaign"
+    },
+    {
+      "source": "/reference/get-leads-campaign-overview",
+      "destination": "/api-reference/campaigns/get-leads"
+    },
+    {
+      "source": "/reference/get-lead-sequence-details",
+      "destination": "/api-reference/campaigns/get-lead-by-id"
+    },
+    {
+      "source": "/reference/list-all-leads-by-campaign-id",
+      "destination": "/api-reference/leads/get-by-campaign"
+    },
+    {
+      "source": "/reference/fetch-lead-categori",
+      "destination": "/api-reference/leads/categories"
+    },
+    {
+      "source": "/reference/fetch-lead-by-email-address",
+      "destination": "/api-reference/leads/get-by-email"
+    },
+    {
+      "source": "/reference/add-leads-to-a-campaign-by-id",
+      "destination": "/api-reference/leads/add-to-campaign"
+    },
+    {
+      "source": "/reference/resume-lead-by-campaign-id",
+      "destination": "/api-reference/leads/resume"
+    },
+    {
+      "source": "/reference/manual-complete-lead-by-campaign-id",
+      "destination": "/api-reference/campaigns/mark-lead-complete"
+    },
+    {
+      "source": "/reference/pause-lead-by-campaign-id",
+      "destination": "/api-reference/leads/pause"
+    },
+    {
+      "source": "/reference/delete-lead-by-campaign-id",
+      "destination": "/api-reference/leads/delete"
+    },
+    {
+      "source": "/reference/unsubscribepause-lead-from-campaign",
+      "destination": "/api-reference/campaigns/unsubscribe-lead"
+    },
+    {
+      "source": "/reference/unsubscribe-lead-from-all-campaigns",
+      "destination": "/api-reference/leads/unsubscribe"
+    },
+    {
+      "source": "/reference/global-leads",
+      "destination": "/api-reference/leads/get-by-email"
+    },
+    {
+      "source": "/reference/fetch-leads-from-global-block-list",
+      "destination": "/api-reference/utilities/domain-block-list"
+    },
+    {
+      "source": "/reference/add-leaddomain-to-global-block-list",
+      "destination": "/api-reference/utilities/domain-block-list"
+    },
+    {
+      "source": "/reference/delete-leaddomain-from-global-block-list",
+      "destination": "/api-reference/utilities/domain-block-list"
+    },
+    {
+      "source": "/reference/update-lead-using-the-lead-id",
+      "destination": "/api-reference/leads/update"
+    },
+    {
+      "source": "/reference/update-a-leads-category-based-on-their-campaign",
+      "destination": "/api-reference/campaigns/update-lead-category"
+    },
+    {
+      "source": "/reference/fetch-lead-message-history-based-on-campaign",
+      "destination": "/api-reference/campaigns/get-lead-history"
+    },
+    {
+      "source": "/reference/create-an-email-account",
+      "destination": "/api-reference/email-accounts/add-smtp"
+    },
+    {
+      "source": "/reference/remove-email-account-from-a-campaign",
+      "destination": "/api-reference/campaigns/remove-email-accounts"
+    },
+    {
+      "source": "/reference/fetch-all-email-accounts-associated-to-a-user",
+      "destination": "/api-reference/email-accounts/get-all"
+    },
+    {
+      "source": "/reference/list-all-email-accounts-per-campaign",
+      "destination": "/api-reference/campaigns/get-email-accounts"
+    },
+    {
+      "source": "/reference/fetch-email-account-by-id",
+      "destination": "/api-reference/email-accounts/get-by-id"
+    },
+    {
+      "source": "/reference/add-email-account-to-a-campaign",
+      "destination": "/api-reference/campaigns/add-email-accounts"
+    },
+    {
+      "source": "/reference/addupdate-warmup-to-email-account",
+      "destination": "/api-reference/email-accounts/warmup-settings"
+    },
+    {
+      "source": "/reference/reconnect-failed-email-accounts-1",
+      "destination": "/api-reference/email-accounts/get-all"
+    },
+    {
+      "source": "/reference/fetch-warmup-stats-by-email-account-id",
+      "destination": "/api-reference/email-accounts/warmup-stats"
+    },
+    {
+      "source": "/reference/update-email-account-tag",
+      "destination": "/api-reference/email-account-tags/assign"
+    },
+    {
+      "source": "/reference/update-email-account",
+      "destination": "/api-reference/email-accounts/update"
+    },
+    {
+      "source": "/reference/post_email-accounts-account-id-fetch-messages",
+      "destination": "/api-reference/email-accounts/get-by-id"
+    },
+    {
+      "source": "/reference/post_email-accounts-multi-fetch-messages",
+      "destination": "/api-reference/email-accounts/get-all"
+    },
+    {
+      "source": "/reference/email-accounts",
+      "destination": "/api-reference/email-accounts/get-all"
+    },
+    {
+      "source": "/reference/post_v1-email-accounts-tag-mapping",
+      "destination": "/api-reference/email-account-tags/assign"
+    },
+    {
+      "source": "/reference/delete_v1-email-accounts-tag-mapping",
+      "destination": "/api-reference/email-account-tags/remove"
+    },
+    {
+      "source": "/reference/getemailaccounttaglist",
+      "destination": "/api-reference/email-account-tags/get-all"
+    },
+    {
+      "source": "/reference/fetch-campaign-statistics-by-campaign-id",
+      "destination": "/api-reference/campaign-statistics/get-by-id"
+    },
+    {
+      "source": "/reference/fetch-campaign-statistics-by-campaign-id-and-date-range",
+      "destination": "/api-reference/campaign-statistics/get-by-date-range"
+    },
+    {
+      "source": "/reference/fetch-campaign-top-level-analytics",
+      "destination": "/api-reference/campaign-statistics/top-level"
+    },
+    {
+      "source": "/reference/fetch-campaign-top-level-analytics-by-date-range",
+      "destination": "/api-reference/campaign-statistics/top-level-by-date"
+    },
+    {
+      "source": "/reference/lead-statistics",
+      "destination": "/api-reference/campaign-statistics/lead-statistics"
+    },
+    {
+      "source": "/reference/fetch-campaign-mailbox-statistics",
+      "destination": "/api-reference/campaign-statistics/mailbox-statistics"
+    },
+    {
+      "source": "/reference/region-wise-provider-ids",
+      "destination": "/api-reference/smart-delivery/provider-ids"
+    },
+    {
+      "source": "/reference/create-a-manual-placement-test",
+      "destination": "/api-reference/smart-delivery/create-manual-test"
+    },
+    {
+      "source": "/reference/create-an-automated-placement-test",
+      "destination": "/api-reference/smart-delivery/create-automated-test"
+    },
+    {
+      "source": "/reference/spam-test-details",
+      "destination": "/api-reference/smart-delivery/test-details"
+    },
+    {
+      "source": "/reference/delete-smart-delivery-test-in-bulk",
+      "destination": "/api-reference/smart-delivery/delete-tests-bulk"
+    },
+    {
+      "source": "/reference/stop-an-automated-test",
+      "destination": "/api-reference/smart-delivery/stop-automated-test"
+    },
+    {
+      "source": "/reference/list-tests",
+      "destination": "/api-reference/smart-delivery/list-tests"
+    },
+    {
+      "source": "/reference/provider-wise-results",
+      "destination": "/api-reference/smart-delivery/provider-report"
+    },
+    {
+      "source": "/reference/geo-wise-report",
+      "destination": "/api-reference/smart-delivery/geo-report"
+    },
+    {
+      "source": "/reference/sender-account-wise-report",
+      "destination": "/api-reference/smart-delivery/sender-report"
+    },
+    {
+      "source": "/reference/spam-filter-report",
+      "destination": "/api-reference/smart-delivery/spam-filter-report"
+    },
+    {
+      "source": "/reference/dkim-details-copy",
+      "destination": "/api-reference/smart-delivery/dkim-details"
+    },
+    {
+      "source": "/reference/spf-details",
+      "destination": "/api-reference/smart-delivery/spf-details"
+    },
+    {
+      "source": "/reference/rdns-report",
+      "destination": "/api-reference/smart-delivery/rdns-report"
+    },
+    {
+      "source": "/reference/sender-account-list",
+      "destination": "/api-reference/smart-delivery/sender-list"
+    },
+    {
+      "source": "/reference/sender-account-list-copy",
+      "destination": "/api-reference/smart-delivery/sender-list"
+    },
+    {
+      "source": "/reference/spam-test-seed-account-list-copy",
+      "destination": "/api-reference/smart-delivery/sender-list"
+    },
+    {
+      "source": "/reference/domain-blacklist",
+      "destination": "/api-reference/smart-delivery/domain-blacklist"
+    },
+    {
+      "source": "/reference/test-email-content",
+      "destination": "/api-reference/smart-delivery/test-email-content"
+    },
+    {
+      "source": "/reference/ip-blacklist-count",
+      "destination": "/api-reference/smart-delivery/ip-blacklist-count"
+    },
+    {
+      "source": "/reference/email-headers-per-email",
+      "destination": "/api-reference/smart-delivery/reply-headers"
+    },
+    {
+      "source": "/reference/schedule-history-for-automated-tests",
+      "destination": "/api-reference/smart-delivery/schedule-history"
+    },
+    {
+      "source": "/reference/ip-details",
+      "destination": "/api-reference/smart-delivery/ip-details"
+    },
+    {
+      "source": "/reference/mail-box-summary",
+      "destination": "/api-reference/smart-delivery/mailbox-summary"
+    },
+    {
+      "source": "/reference/mailbox-count",
+      "destination": "/api-reference/smart-delivery/mailbox-count"
+    },
+    {
+      "source": "/reference/get-all-folders",
+      "destination": "/api-reference/smart-delivery/get-folders"
+    },
+    {
+      "source": "/reference/create-folder",
+      "destination": "/api-reference/smart-delivery/create-folder"
+    },
+    {
+      "source": "/reference/get-folder-by-id",
+      "destination": "/api-reference/smart-delivery/get-folder-by-id"
+    },
+    {
+      "source": "/reference/delete-folder",
+      "destination": "/api-reference/smart-delivery/delete-folder"
+    },
+    {
+      "source": "/reference/fetch-webhooks-by-campaign-id",
+      "destination": "/api-reference/campaigns/get-webhooks"
+    },
+    {
+      "source": "/reference/email-reply-webhooks",
+      "destination": "/api-reference/webhooks/events"
+    },
+    {
+      "source": "/reference/add-update-campaign-webhook",
+      "destination": "/api-reference/campaigns/save-webhooks"
+    },
+    {
+      "source": "/reference/delete-campaign-webhook",
+      "destination": "/api-reference/campaigns/delete-webhook"
+    },
+    {
+      "source": "/reference/get-webhooks-publish-summary",
+      "destination": "/api-reference/campaigns/get-webhook-summary"
+    },
+    {
+      "source": "/reference/retrigger-failed-events",
+      "destination": "/api-reference/campaigns/retrigger-webhooks"
+    },
+    {
+      "source": "/reference/add-client-to-system-whitelabel-or-not",
+      "destination": "/api-reference/clients/create"
+    },
+    {
+      "source": "/reference/fetch-all-clients",
+      "destination": "/api-reference/clients/get-all"
+    },
+    {
+      "source": "/reference/create-new-client-api-key",
+      "destination": "/api-reference/clients/api-keys"
+    },
+    {
+      "source": "/reference/get-clients-api-keys",
+      "destination": "/api-reference/clients/api-keys"
+    },
+    {
+      "source": "/reference/delete-client-api-key",
+      "destination": "/api-reference/clients/api-keys"
+    },
+    {
+      "source": "/reference/reset-client-api-key",
+      "destination": "/api-reference/clients/api-keys"
+    },
+    {
+      "source": "/reference/get-mailbox-otp",
+      "destination": "/api-reference/smart-senders/auto-generate"
+    },
+    {
+      "source": "/reference/get_new-endpoint",
+      "destination": "/api-reference/smart-senders/auto-generate"
+    },
+    {
+      "source": "/reference/search-domain",
+      "destination": "/api-reference/smart-senders/search-domain"
+    },
+    {
+      "source": "/reference/get-vendors",
+      "destination": "/api-reference/smart-senders/get-vendors"
+    },
+    {
+      "source": "/reference/save-domain-mailbox-info",
+      "destination": "/api-reference/smart-senders/place-order"
+    },
+    {
+      "source": "/reference/get-domain-list",
+      "destination": "/api-reference/smart-senders/domain-list"
+    },
+    {
+      "source": "/reference/get-order-details-api",
+      "destination": "/api-reference/smart-senders/place-order"
+    },
+    {
+      "source": "/reference/get_v1-analytics-campaign-list",
+      "destination": "/api-reference/analytics/campaign-list"
+    },
+    {
+      "source": "/reference/get_v1-analytics-client-list",
+      "destination": "/api-reference/analytics/client-list"
+    },
+    {
+      "source": "/reference/get_v1-analytics-client-month-wise-count",
+      "destination": "/api-reference/analytics/month-wise-client-count"
+    },
+    {
+      "source": "/reference/get_v1-analytics-overall-stats-v2",
+      "destination": "/api-reference/analytics/overview"
+    },
+    {
+      "source": "/reference/get_v1-analytics-day-wise-overall-stats",
+      "destination": "/api-reference/analytics/day-wise-stats"
+    },
+    {
+      "source": "/reference/get_v1-analytics-day-wise-overall-stats-by-sent-time",
+      "destination": "/api-reference/analytics/day-wise-sent-time"
+    },
+    {
+      "source": "/reference/get_v1-analytics-day-wise-positive-reply-stats",
+      "destination": "/api-reference/analytics/day-wise-positive-reply"
+    },
+    {
+      "source": "/reference/get_v1-analytics-day-wise-positive-reply-stats-by-sent-time",
+      "destination": "/api-reference/analytics/day-wise-positive-sent-time"
+    },
+    {
+      "source": "/reference/get_v1-analytics-campaign-overall-stats",
+      "destination": "/api-reference/analytics/campaign-performance"
+    },
+    {
+      "source": "/reference/get_v1-analytics-client-overall-stats",
+      "destination": "/api-reference/analytics/client-performance"
+    },
+    {
+      "source": "/reference/get_v1-analytics-mailbox-name-wise-health-metrics",
+      "destination": "/api-reference/analytics/email-wise-health"
+    },
+    {
+      "source": "/reference/get_v1-analytics-mailbox-domain-wise-health-metrics",
+      "destination": "/api-reference/analytics/domain-wise-health"
+    },
+    {
+      "source": "/reference/get_v1-analytics-mailbox-provider-wise-overall-performance",
+      "destination": "/api-reference/analytics/provider-performance"
+    },
+    {
+      "source": "/reference/get_v1-analytics-team-board-overall-stats",
+      "destination": "/api-reference/analytics/team-board-stats"
+    },
+    {
+      "source": "/reference/get_v1-analytics-lead-overall-stats",
+      "destination": "/api-reference/analytics/lead-stats"
+    },
+    {
+      "source": "/reference/get_v1-analytics-lead-category-wise-response",
+      "destination": "/api-reference/analytics/lead-category-response"
+    },
+    {
+      "source": "/reference/get_v1-analytics-campaign-leads-take-for-first-reply",
+      "destination": "/api-reference/analytics/leads-for-first-reply"
+    },
+    {
+      "source": "/reference/get_v1-analytics-campaign-follow-up-reply-rate",
+      "destination": "/api-reference/analytics/followup-reply-rate"
+    },
+    {
+      "source": "/reference/get_v1-analytics-campaign-lead-to-reply-time",
+      "destination": "/api-reference/analytics/lead-to-reply-time"
+    },
+    {
+      "source": "/reference/get_v1-analytics-campaign-response-stats",
+      "destination": "/api-reference/analytics/campaign-response-stats"
+    },
+    {
+      "source": "/reference/get_v1-analytics-campaign-status-stats",
+      "destination": "/api-reference/analytics/campaign-status-stats"
+    },
+    {
+      "source": "/reference/get_v1-analytics-mailbox-overall-stats",
+      "destination": "/api-reference/analytics/mailbox-health"
+    },
+    {
+      "source": "/reference/fetch-inbox-replies",
+      "destination": "/api-reference/inbox/get-messages"
+    },
+    {
+      "source": "/reference/fetch-unread-replies",
+      "destination": "/api-reference/inbox/get-unread"
+    },
+    {
+      "source": "/reference/fetch-scheduled-messages",
+      "destination": "/api-reference/inbox/get-scheduled"
+    },
+    {
+      "source": "/reference/reply-to-lead-from-master-inbox-via-api",
+      "destination": "/api-reference/inbox/reply"
+    },
+    {
+      "source": "/reference/forward-reply",
+      "destination": "/api-reference/inbox/forward"
+    },
+    {
+      "source": "/reference/update-lead-revenue",
+      "destination": "/api-reference/inbox/update-revenue"
+    },
+    {
+      "source": "/reference/update-lead-category",
+      "destination": "/api-reference/inbox/update-category"
+    },
+    {
+      "source": "/reference/create-lead-task",
+      "destination": "/api-reference/inbox/create-task"
+    },
+    {
+      "source": "/reference/create-lead-note",
+      "destination": "/api-reference/inbox/create-note"
+    },
+    {
+      "source": "/reference/block-domains-1",
+      "destination": "/api-reference/inbox/block-domains"
+    },
+    {
+      "source": "/reference/resume-lead-1",
+      "destination": "/api-reference/inbox/resume-lead"
+    },
+    {
+      "source": "/reference/change-read-status",
+      "destination": "/api-reference/inbox/mark-read"
+    },
+    {
+      "source": "/reference/set-reminder",
+      "destination": "/api-reference/inbox/set-reminder"
+    },
+    {
+      "source": "/reference/push-lead-to-subsequence",
+      "destination": "/api-reference/inbox/push-to-subsequence"
+    },
+    {
+      "source": "/reference/update-team-member-to-lead",
+      "destination": "/api-reference/inbox/update-team-member"
+    },
+    {
+      "source": "/reference/getdepartments",
+      "destination": "/api-reference/smart-prospect/departments"
+    },
+    {
+      "source": "/reference/getcities",
+      "destination": "/api-reference/smart-prospect/cities"
+    },
+    {
+      "source": "/reference/getcountries",
+      "destination": "/api-reference/smart-prospect/countries"
+    },
+    {
+      "source": "/reference/getstates",
+      "destination": "/api-reference/smart-prospect/states"
+    },
+    {
+      "source": "/reference/getindustries",
+      "destination": "/api-reference/smart-prospect/industries"
+    },
+    {
+      "source": "/reference/getsubindustries",
+      "destination": "/api-reference/smart-prospect/sub-industries"
+    },
+    {
+      "source": "/reference/getheadcounts",
+      "destination": "/api-reference/smart-prospect/head-counts"
+    },
+    {
+      "source": "/reference/getlevels",
+      "destination": "/api-reference/smart-prospect/levels"
+    },
+    {
+      "source": "/reference/getrevenue",
+      "destination": "/api-reference/smart-prospect/revenue"
+    },
+    {
+      "source": "/reference/getcompanies",
+      "destination": "/api-reference/smart-prospect/company"
+    },
+    {
+      "source": "/reference/getdomains",
+      "destination": "/api-reference/smart-prospect/domain"
+    },
+    {
+      "source": "/reference/getjobtitles",
+      "destination": "/api-reference/smart-prospect/job-title"
+    },
+    {
+      "source": "/reference/getkeywords",
+      "destination": "/api-reference/smart-prospect/keywords"
+    },
+    {
+      "source": "/reference/searchcontacts",
+      "destination": "/api-reference/smart-prospect/search-contacts"
+    },
+    {
+      "source": "/reference/fetchcontacts",
+      "destination": "/api-reference/smart-prospect/fetch-contacts"
+    },
+    {
+      "source": "/reference/getcontacts",
+      "destination": "/api-reference/smart-prospect/get-contacts"
+    },
+    {
+      "source": "/reference/reviewcontacts",
+      "destination": "/api-reference/smart-prospect/review-contacts"
+    },
+    {
+      "source": "/reference/getsavedsearches",
+      "destination": "/api-reference/smart-prospect/saved-searches"
+    },
+    {
+      "source": "/reference/getrecentsearches",
+      "destination": "/api-reference/smart-prospect/recent-searches"
+    },
+    {
+      "source": "/reference/getfetchedsearches",
+      "destination": "/api-reference/smart-prospect/fetched-searches"
+    },
+    {
+      "source": "/reference/savesearch",
+      "destination": "/api-reference/smart-prospect/save-search"
+    },
+    {
+      "source": "/reference/updatesavedsearch",
+      "destination": "/api-reference/smart-prospect/update-saved-search"
+    },
+    {
+      "source": "/reference/updatefetchedlead",
+      "destination": "/api-reference/smart-prospect/update-fetched-lead"
+    },
+    {
+      "source": "/reference/getsearchanalytics",
+      "destination": "/api-reference/smart-prospect/search-analytics"
+    },
+    {
+      "source": "/reference/getreplyanalytics",
+      "destination": "/api-reference/smart-prospect/reply-analytics"
+    },
+    {
+      "source": "/reference/findemails",
+      "destination": "/api-reference/smart-prospect/find-emails"
+    },
+    {
+      "source": "/reference/:slug*",
+      "destination": "/api-reference/campaigns/get-all"
+    }
+  ]
 }
