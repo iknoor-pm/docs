@@ -76,7 +76,42 @@
         "api-reference/campaigns/update-sequences",
         "api-reference/campaigns/get-email-accounts",
         "api-reference/campaigns/add-email-accounts",
-        "api-reference/campaigns/remove-email-accounts"
+        "api-reference/campaigns/remove-email-accounts",
+        "api-reference/campaigns/create-subsequence",
+        "api-reference/campaigns/forward-email",
+        "api-reference/campaigns/reply-email-thread",
+        "api-reference/campaigns/send-test-email",
+        "api-reference/campaigns/update-team-member"
+      ]
+    },
+    {
+      "group": "Campaign Leads",
+      "pages": [
+        "api-reference/campaigns/add-leads",
+        "api-reference/campaigns/get-leads",
+        "api-reference/campaigns/get-lead-by-id",
+        "api-reference/campaigns/get-lead-history",
+        "api-reference/campaigns/get-leads-history-bulk",
+        "api-reference/campaigns/all-leads-activities",
+        "api-reference/campaigns/update-lead",
+        "api-reference/campaigns/update-lead-category",
+        "api-reference/campaigns/update-lead-email-account",
+        "api-reference/campaigns/pause-lead",
+        "api-reference/campaigns/resume-lead",
+        "api-reference/campaigns/mark-lead-complete",
+        "api-reference/campaigns/unsubscribe-lead",
+        "api-reference/campaigns/delete-lead",
+        "api-reference/campaigns/export-leads"
+      ]
+    },
+    {
+      "group": "Campaign Webhooks",
+      "pages": [
+        "api-reference/campaigns/get-webhooks",
+        "api-reference/campaigns/get-webhook-summary",
+        "api-reference/campaigns/save-webhooks",
+        "api-reference/campaigns/delete-webhook",
+        "api-reference/campaigns/retrigger-webhooks"
       ]
     },
     {
@@ -88,7 +123,10 @@
         "api-reference/campaign-statistics/top-level",
         "api-reference/campaign-statistics/top-level-by-date",
         "api-reference/campaign-statistics/lead-statistics",
-        "api-reference/campaign-statistics/mailbox-statistics"
+        "api-reference/campaign-statistics/mailbox-statistics",
+        "api-reference/campaigns/get-analytics",
+        "api-reference/campaigns/get-analytics-by-date",
+        "api-reference/campaigns/get-top-level-analytics"
       ]
     },
     {
