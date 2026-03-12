@@ -1,0 +1,51 @@
+---
+title: "Create Email Account Tag"
+api: "POST https://server.smartlead.ai/api/v1/email-accounts/tags"
+description: "Create a new tag for organizing email accounts"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="name" type="string" required>
+  Name of the tag
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/email-accounts/tags?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Production Accounts"}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Created tag object
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "id": 501,
+    "name": "Production Accounts"
+  }
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,61 @@
+---
+title: "Update Client"
+api: "PATCH https://server.smartlead.ai/api/v1/clients/{client_id}"
+description: "Update client details"
+---
+
+## Path Parameters
+
+<ParamField path="client_id" type="number" required>
+  The unique identifier of the client
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="name" type="string">
+  Updated client name
+</ParamField>
+
+<ParamField body="permissions" type="object">
+  Updated permissions
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X PATCH "https://server.smartlead.ai/api/v1/clients/301?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Acme Agency LLC"}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Updated client object
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "id": 301,
+    "name": "Acme Agency LLC"
+  }
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,45 @@
+---
+title: "Remove Tag from Email Account"
+api: "DELETE https://server.smartlead.ai/api/v1/email-accounts/{account_id}/tags/{tag_id}"
+description: "Remove a tag from an email account"
+---
+
+## Path Parameters
+
+<ParamField path="account_id" type="number" required>
+  The email account ID
+</ParamField>
+
+<ParamField path="tag_id" type="number" required>
+  The tag ID to remove
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X DELETE "https://server.smartlead.ai/api/v1/email-accounts/100/tags/501?api_key=YOUR_KEY"
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true
+}
+```
+
+</ResponseExample>

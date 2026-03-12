@@ -1,0 +1,58 @@
+---
+title: "Import Leads to List"
+api: "POST https://server.smartlead.ai/api/v1/lead-lists/{list_id}/leads"
+description: "Import leads into a specific lead list"
+---
+
+## Path Parameters
+
+<ParamField path="list_id" type="number" required>
+  The unique identifier of the lead list
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="leads" type="array" required>
+  Array of lead objects. Each must include `email` and can include `first_name`, `last_name`, `company_name`, `phone_number`, and custom fields
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/lead-lists/201/leads?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"leads": [{"email": "john@example.com", "first_name": "John", "last_name": "Doe"}]}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Import summary with counts of added and skipped leads
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "added": 1,
+    "skipped": 0,
+    "total": 1
+  }
+}
+```
+
+</ResponseExample>

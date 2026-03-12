@@ -1,0 +1,43 @@
+---
+title: "Get All Clients"
+api: "GET https://server.smartlead.ai/api/v1/clients"
+description: "Retrieve all clients under your account"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl "https://server.smartlead.ai/api/v1/clients?api_key=YOUR_KEY"
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Array of client objects
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": [
+    {"id": 301, "name": "Acme Agency", "email": "admin@acme.com"},
+    {"id": 302, "name": "Beta Co", "email": "admin@beta.com"}
+  ]
+}
+```
+
+</ResponseExample>

@@ -108,6 +108,48 @@
       ]
     },
     {
+      "group": "Lead Notes",
+      "pages": [
+        "api-reference/lead-notes/create",
+        "api-reference/lead-notes/get-all",
+        "api-reference/lead-notes/update",
+        "api-reference/lead-notes/delete"
+      ]
+    },
+    {
+      "group": "Lead Tasks",
+      "pages": [
+        "api-reference/lead-tasks/create",
+        "api-reference/lead-tasks/get-all",
+        "api-reference/lead-tasks/update",
+        "api-reference/lead-tasks/delete"
+      ]
+    },
+    {
+      "group": "Lead Tags",
+      "pages": [
+        "api-reference/lead-tags/create",
+        "api-reference/lead-tags/get-all",
+        "api-reference/lead-tags/add-to-lead",
+        "api-reference/lead-tags/remove-from-lead",
+        "api-reference/lead-tags/delete"
+      ]
+    },
+    {
+      "group": "Lead Lists",
+      "pages": [
+        "api-reference/lead-lists/create",
+        "api-reference/lead-lists/get-all",
+        "api-reference/lead-lists/get-by-id",
+        "api-reference/lead-lists/update",
+        "api-reference/lead-lists/delete",
+        "api-reference/lead-lists/import-leads",
+        "api-reference/lead-lists/push-between-lists",
+        "api-reference/lead-lists/push-to-campaign",
+        "api-reference/lead-lists/assign-tags"
+      ]
+    },
+    {
       "group": "Email Account Management",
       "pages": [
         "api-reference/email-accounts/get-all",
@@ -120,6 +162,15 @@
         "api-reference/email-accounts/warmup-stats",
         "api-reference/email-accounts/suspend",
         "api-reference/email-accounts/unsuspend"
+      ]
+    },
+    {
+      "group": "Email Account Tags",
+      "pages": [
+        "api-reference/email-account-tags/create",
+        "api-reference/email-account-tags/get-all",
+        "api-reference/email-account-tags/assign",
+        "api-reference/email-account-tags/remove"
       ]
     },
     {
@@ -237,6 +288,38 @@
         "api-reference/utilities/verify-email",
         "api-reference/utilities/send-single-email",
         "api-reference/utilities/domain-block-list"
+      ]
+    },
+    {
+      "group": "Client Management",
+      "pages": [
+        "api-reference/clients/create",
+        "api-reference/clients/get-all",
+        "api-reference/clients/get-by-id",
+        "api-reference/clients/update",
+        "api-reference/clients/delete",
+        "api-reference/clients/api-keys"
+      ]
+    },
+    {
+      "group": "Smart Prospect",
+      "pages": [
+        "api-reference/smart-prospect/get-credits",
+        "api-reference/smart-prospect/update-credits",
+        "api-reference/smart-prospect/search-people",
+        "api-reference/smart-prospect/search-companies",
+        "api-reference/smart-prospect/get-all-searches",
+        "api-reference/smart-prospect/get-search-by-id",
+        "api-reference/smart-prospect/save-search",
+        "api-reference/smart-prospect/delete-search",
+        "api-reference/smart-prospect/enrich-lead",
+        "api-reference/smart-prospect/bulk-enrich",
+        "api-reference/smart-prospect/get-enrichment-status",
+        "api-reference/smart-prospect/export-enriched",
+        "api-reference/smart-prospect/get-lists",
+        "api-reference/smart-prospect/get-list-leads",
+        "api-reference/smart-prospect/push-to-list",
+        "api-reference/smart-prospect/push-to-campaign"
       ]
     },
     {

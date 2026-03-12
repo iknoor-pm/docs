@@ -1,0 +1,40 @@
+---
+title: "Update Credits"
+api: "POST https://server.smartlead.ai/api/v1/smart-prospect/credits"
+description: "Update the Smart Prospect credit allocation"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="credits" type="number" required>
+  Number of credits to add or set
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/smart-prospect/credits?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"credits": 1000}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "available_credits": 6000
+  }
+}
+```
+
+</ResponseExample>

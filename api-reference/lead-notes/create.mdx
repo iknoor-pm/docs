@@ -1,0 +1,60 @@
+---
+title: "Create Lead Note"
+api: "POST https://server.smartlead.ai/api/v1/leads/{lead_id}/notes"
+description: "Create a new note for a specific lead"
+---
+
+## Path Parameters
+
+<ParamField path="lead_id" type="number" required>
+  The unique identifier of the lead
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="note" type="string" required>
+  The content of the note
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/leads/123/notes?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"note": "Spoke with lead, interested in enterprise plan"}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Created note object with id, note content, and timestamps
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "id": 456,
+    "lead_id": 123,
+    "note": "Spoke with lead, interested in enterprise plan",
+    "created_at": "2025-12-01T10:30:00.000Z",
+    "updated_at": "2025-12-01T10:30:00.000Z"
+  }
+}
+```
+
+</ResponseExample>

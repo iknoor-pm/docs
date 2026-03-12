@@ -1,0 +1,42 @@
+---
+title: "Bulk Enrich Leads"
+api: "POST https://server.smartlead.ai/api/v1/smart-prospect/enrich/bulk"
+description: "Enrich multiple leads in a single request. Returns a job ID for tracking progress"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="leads" type="array" required>
+  Array of lead objects to enrich (each with `email` or `linkedin_url`)
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/smart-prospect/enrich/bulk?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"leads": [{"email": "jane@techco.com"}, {"email": "john@acme.com"}]}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "job_id": "enr_abc123",
+    "total_leads": 2,
+    "status": "processing"
+  }
+}
+```
+
+</ResponseExample>

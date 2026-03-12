@@ -1,0 +1,49 @@
+---
+title: "Push to List"
+api: "POST https://server.smartlead.ai/api/v1/smart-prospect/push-to-list"
+description: "Push prospect search results to a lead list"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="search_id" type="number" required>
+  ID of the saved search
+</ParamField>
+
+<ParamField body="list_id" type="number" required>
+  Target lead list ID
+</ParamField>
+
+<ParamField body="lead_ids" type="array">
+  Optional array of specific lead IDs to push. If omitted, pushes all results
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/smart-prospect/push-to-list?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"search_id": 100, "list_id": 201}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "pushed": 50,
+    "credits_used": 50
+  }
+}
+```
+
+</ResponseExample>

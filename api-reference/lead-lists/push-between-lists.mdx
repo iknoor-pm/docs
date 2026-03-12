@@ -1,0 +1,56 @@
+---
+title: "Push Leads Between Lists"
+api: "POST https://server.smartlead.ai/api/v1/lead-lists/{list_id}/push"
+description: "Push leads from one list to another"
+---
+
+## Path Parameters
+
+<ParamField path="list_id" type="number" required>
+  Source list ID to push leads from
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="target_list_id" type="number" required>
+  Destination list ID to push leads to
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/lead-lists/201/push?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"target_list_id": 202}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Push summary with counts
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "pushed": 50
+  }
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,43 @@
+---
+title: "Get All Lead Lists"
+api: "GET https://server.smartlead.ai/api/v1/lead-lists"
+description: "Retrieve all lead lists in your account"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl "https://server.smartlead.ai/api/v1/lead-lists?api_key=YOUR_KEY"
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Array of lead list objects
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": [
+    {"id": 201, "name": "Enterprise Prospects Q1", "lead_count": 150},
+    {"id": 202, "name": "SMB Leads", "lead_count": 320}
+  ]
+}
+```
+
+</ResponseExample>

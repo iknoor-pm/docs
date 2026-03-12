@@ -1,0 +1,49 @@
+---
+title: "Push to Campaign"
+api: "POST https://server.smartlead.ai/api/v1/smart-prospect/push-to-campaign"
+description: "Push prospect search results directly to a campaign"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="search_id" type="number" required>
+  ID of the saved search
+</ParamField>
+
+<ParamField body="campaign_id" type="number" required>
+  Target campaign ID
+</ParamField>
+
+<ParamField body="lead_ids" type="array">
+  Optional array of specific lead IDs to push
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/smart-prospect/push-to-campaign?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"search_id": 100, "campaign_id": 456}'
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "pushed": 30,
+    "credits_used": 30
+  }
+}
+```
+
+</ResponseExample>

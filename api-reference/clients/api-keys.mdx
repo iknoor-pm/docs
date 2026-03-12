@@ -1,0 +1,57 @@
+---
+title: "Manage Client API Keys"
+api: "POST https://server.smartlead.ai/api/v1/clients/{client_id}/api-keys"
+description: "Generate or manage API keys for a specific client"
+---
+
+## Path Parameters
+
+<ParamField path="client_id" type="number" required>
+  The unique identifier of the client
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="action" type="string" required>
+  Action to perform. Values: `generate`, `revoke`
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/clients/301/api-keys?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"action": "generate"}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  API key details
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "api_key": "cl_new_xxxxxxxx",
+    "created_at": "2025-12-01T10:00:00.000Z"
+  }
+}
+```
+
+</ResponseExample>

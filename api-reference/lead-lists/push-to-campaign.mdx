@@ -1,0 +1,56 @@
+---
+title: "Push Leads from List to Campaign"
+api: "POST https://server.smartlead.ai/api/v1/lead-lists/{list_id}/push-to-campaign"
+description: "Push leads from a list directly into a campaign"
+---
+
+## Path Parameters
+
+<ParamField path="list_id" type="number" required>
+  Lead list ID to push leads from
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="campaign_id" type="number" required>
+  Campaign ID to push leads into
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/lead-lists/201/push-to-campaign?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"campaign_id": 456}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Push summary with counts
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "pushed": 100
+  }
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,74 @@
+---
+title: "Create Lead Task"
+api: "POST https://server.smartlead.ai/api/v1/leads/{lead_id}/tasks"
+description: "Create a new task associated with a specific lead"
+---
+
+## Path Parameters
+
+<ParamField path="lead_id" type="number" required>
+  The unique identifier of the lead
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="title" type="string" required>
+  Title of the task
+</ParamField>
+
+<ParamField body="description" type="string">
+  Detailed description of the task
+</ParamField>
+
+<ParamField body="due_date" type="string">
+  Due date in ISO 8601 format (e.g., `2025-12-31T23:59:59.000Z`)
+</ParamField>
+
+<ParamField body="status" type="string">
+  Task status. Values: `PENDING`, `COMPLETED`
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/leads/123/tasks?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Follow up call", "due_date": "2025-12-15T10:00:00.000Z"}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Created task object
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "id": 789,
+    "lead_id": 123,
+    "title": "Follow up call",
+    "description": null,
+    "due_date": "2025-12-15T10:00:00.000Z",
+    "status": "PENDING",
+    "created_at": "2025-12-01T10:30:00.000Z"
+  }
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,57 @@
+---
+title: "Update Lead List"
+api: "PATCH https://server.smartlead.ai/api/v1/lead-lists/{list_id}"
+description: "Update the name or properties of a lead list"
+---
+
+## Path Parameters
+
+<ParamField path="list_id" type="number" required>
+  The unique identifier of the lead list
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="name" type="string" required>
+  New name for the lead list
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X PATCH "https://server.smartlead.ai/api/v1/lead-lists/201?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Enterprise Prospects Q1 - Updated"}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Updated list object
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "id": 201,
+    "name": "Enterprise Prospects Q1 - Updated"
+  }
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,51 @@
+---
+title: "Get Lead List by ID"
+api: "GET https://server.smartlead.ai/api/v1/lead-lists/{list_id}"
+description: "Retrieve details of a specific lead list"
+---
+
+## Path Parameters
+
+<ParamField path="list_id" type="number" required>
+  The unique identifier of the lead list
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl "https://server.smartlead.ai/api/v1/lead-lists/201?api_key=YOUR_KEY"
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Lead list details including name, count, and metadata
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "id": 201,
+    "name": "Enterprise Prospects Q1",
+    "lead_count": 150,
+    "created_at": "2025-12-01T10:00:00.000Z"
+  }
+}
+```
+
+</ResponseExample>

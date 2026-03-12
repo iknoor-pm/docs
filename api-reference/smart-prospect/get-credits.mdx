@@ -1,0 +1,34 @@
+---
+title: "Get Credits"
+api: "GET https://server.smartlead.ai/api/v1/smart-prospect/credits"
+description: "Retrieve the current Smart Prospect credit balance for your account"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl "https://server.smartlead.ai/api/v1/smart-prospect/credits?api_key=YOUR_KEY"
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "available_credits": 5000,
+    "used_credits": 1250,
+    "total_credits": 6250
+  }
+}
+```
+
+</ResponseExample>

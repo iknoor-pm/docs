@@ -1,0 +1,43 @@
+---
+title: "Get Email Account Tags"
+api: "GET https://server.smartlead.ai/api/v1/email-accounts/tags"
+description: "Retrieve all email account tags"
+---
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl "https://server.smartlead.ai/api/v1/email-accounts/tags?api_key=YOUR_KEY"
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Array of tag objects
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": [
+    {"id": 501, "name": "Production Accounts"},
+    {"id": 502, "name": "Warmup Pool"}
+  ]
+}
+```
+
+</ResponseExample>

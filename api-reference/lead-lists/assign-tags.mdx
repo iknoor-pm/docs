@@ -1,0 +1,49 @@
+---
+title: "Assign Tags to Lead List"
+api: "POST https://server.smartlead.ai/api/v1/lead-lists/{list_id}/tags"
+description: "Assign one or more tags to all leads in a list"
+---
+
+## Path Parameters
+
+<ParamField path="list_id" type="number" required>
+  Lead list ID
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Body Parameters
+
+<ParamField body="tag_ids" type="array" required>
+  Array of tag IDs to assign to all leads in the list
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/lead-lists/201/tags?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"tag_ids": [101, 102]}'
+```
+
+</RequestExample>
+
+## Response Fields
+
+<ResponseField name="ok" type="boolean">
+  Whether the operation was successful
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true
+}
+```
+
+</ResponseExample>
