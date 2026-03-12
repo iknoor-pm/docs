@@ -1,0 +1,73 @@
+---
+title: "Job Title API"
+api: "GET https://prospect-api.smartlead.ai/api/v1/search-email-leads/job-title"
+description: "List job titles for the authenticated user - GET /job-title"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+<ParamField query="limit" type="string">
+  Number of job titles to return (optional). Default: 100.
+</ParamField>
+
+<ParamField query="offset" type="string">
+  Number of job titles to skip for pagination (optional). Default: 0.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search string to filter job titles by name (optional).
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://prospect-api.smartlead.ai/api/v1/search-email-leads/job-title?api_key=YOUR_API_KEY"
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Data retrieved successfully",
+  "data": [
+    { "job_title": "Software Engineer" },
+    { "job_title": "Product Manager" }
+  ]
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

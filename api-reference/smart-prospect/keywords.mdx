@@ -1,0 +1,73 @@
+---
+title: "Keywords API"
+api: "GET https://prospect-api.smartlead.ai/api/v1/search-email-leads/keywords"
+description: "List keywords for the authenticated user - GET /keywords"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+<ParamField query="limit" type="string">
+  Number of keywords to return (optional). Default: 100.
+</ParamField>
+
+<ParamField query="offset" type="string">
+  Number of keywords to skip for pagination (optional). Default: 0.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search string to filter keywords by name (optional).
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://prospect-api.smartlead.ai/api/v1/search-email-leads/keywords?api_key=YOUR_API_KEY"
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Keywords retrieved successfully",
+  "data": [
+    { "keyword": "marketing" },
+    { "keyword": "sales" }
+  ]
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

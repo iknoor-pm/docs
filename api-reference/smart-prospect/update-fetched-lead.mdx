@@ -1,0 +1,87 @@
+---
+title: "Update Fetched Lead API"
+api: "PUT https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-filters/fetched-searches/{id}"
+description: "Update a fetched lead (search string/name) by ID - PUT /search-filters/fetched-searches/:id"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  The ID of the fetched lead to update (positive integer string, e.g. 327107). Pattern: ^[1-9][0-9]*$.
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+## Request Body
+
+<Note>
+The request body must be JSON. **`search_string` is required** (the new name for the fetched lead).
+</Note>
+
+<ParamField body="search_string" type="string" required>
+  The new search string/name for the fetched lead (1–255 characters).
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X PUT "https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-filters/fetched-searches/327107?api_key=YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"search_string": "Directors and VPs in United States"}'
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Bad Request
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="403" type="Forbidden">
+  Forbidden
+</ResponseField>
+
+<ResponseField name="404" type="Not Found">
+  Not Found
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Fetched lead updated successfully"
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

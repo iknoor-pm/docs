@@ -1,0 +1,80 @@
+---
+title: "Levels API"
+api: "GET https://prospect-api.smartlead.ai/api/v1/search-email-leads/levels"
+description: "List levels (job/seniority levels) for the authenticated user - GET /levels"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+<ParamField query="limit" type="string">
+  Number of levels to return (1–100). Pattern: ^[1-9][0-9]*$ or 100. Default: "10".
+</ParamField>
+
+<ParamField query="offset" type="string">
+  Number of levels to skip for pagination (≥ 0). Pattern: ^[0-9]+$. Default: "0".
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search string to match level names starting with this value (1–255 characters).
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://prospect-api.smartlead.ai/api/v1/search-email-leads/levels?api_key=YOUR_API_KEY"
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Data retrieved successfully",
+  "data": [
+    { "id": 1, "level_name": "Entry" },
+    { "id": 2, "level_name": "Senior" }
+  ],
+  "pagination": {
+    "limit": 10,
+    "offset": 0,
+    "page": 1,
+    "count": 2
+  },
+  "search": null
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

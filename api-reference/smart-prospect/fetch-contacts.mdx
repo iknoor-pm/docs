@@ -1,0 +1,115 @@
+---
+title: "Fetch Contacts API"
+api: "POST https://prospect-api.smartlead.ai/api/v1/search-email-leads/fetch-contacts"
+description: "Fetch contact emails by filter or by IDs - POST /fetch-contacts"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+## Request Body
+
+<Note>
+The request body must be JSON. **`filter_id` is required.** You must provide either **`id`** (array of adapt IDs) with `filter_id`, or **`limit`** with `filter_id`. When using `limit`, it must be between 1 and 10000 (or 30000 for some users). Limit and credit checks apply when using `limit`; failures return **200** with `success: false` and an error message.
+</Note>
+
+<ParamField body="filter_id" type="number" required>
+  Filter ID (positive number).
+</ParamField>
+
+<ParamField body="id" type="string[]">
+  Adapt IDs to fetch (use with filter_id; no limit check). Required when not using limit.
+</ParamField>
+
+<ParamField body="limit" type="number">
+  Number of contacts to fetch for the filter (1–10000 or 1–30000 for some users). Required when not using id.
+</ParamField>
+
+<ParamField body="visual_limit" type="number">
+  Page size for visual pagination (1–1000, default 10).
+</ParamField>
+
+<ParamField body="visual_offset" type="number">
+  Offset for visual pagination (≥ 0, default 0).
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://prospect-api.smartlead.ai/api/v1/search-email-leads/fetch-contacts?api_key=YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"filter_id": 327105, "limit": 10, "visual_limit": 10, "visual_offset": 0}'
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Bad Request
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Data retrieved successfully",
+  "data": {
+    "list": [
+      {
+        "id": "5f22b0c8cff47e0001616f81",
+        "firstName": "Orhan",
+        "lastName": "Demiri",
+        "fullName": "Orhan Demiri",
+        "title": "Director",
+        "company": { "name": "Example Corp", "website": "example.com" },
+        "email": "orhan@example.com",
+        "status": "completed"
+      }
+    ],
+    "total_count": 1,
+    "visual_limit": 10,
+    "visual_offset": 0,
+    "metrics": {
+      "totalContacts": 1,
+      "totalEmails": 1,
+      "noEmailFound": 0,
+      "invalidEmails": 0,
+      "catchAllEmails": 0,
+      "verifiedEmails": 1,
+      "completed": 1
+    }
+  }
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

@@ -1,0 +1,78 @@
+---
+title: "Create Tag"
+api: "POST https://server.smartlead.ai/api/v1/email-accounts/tag-manager"
+description: "Create a new tag that can be used across email accounts and leads"
+---
+
+<Note>
+Tags are created at the account level and can be used to organize both email accounts and leads. This is the same endpoint used for email account tag creation.
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key
+</ParamField>
+
+## Request Body
+
+<ParamField body="id" type="number" required>
+  Tag ID. Use an existing ID to update.
+</ParamField>
+
+<ParamField body="name" type="string" required>
+  Tag name
+</ParamField>
+
+<ParamField body="color" type="string" required>
+  Hex color code (e.g., `#FF5733`)
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://server.smartlead.ai/api/v1/email-accounts/tag-manager?api_key=YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"id": 1, "name": "VIP", "color": "#FF5733"}'
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Invalid request parameters or malformed request body
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Invalid or missing API key
+</ResponseField>
+
+<ResponseField name="422" type="Validation Error">
+  Request validation failed. Check parameter types and constraints.
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": {
+    "id": 1,
+    "name": "VIP",
+    "color": "#FF5733"
+  }
+}
+```
+
+```json 401 - Unauthorized
+{
+  "message": "Invalid API Key"
+}
+```
+
+</ResponseExample>

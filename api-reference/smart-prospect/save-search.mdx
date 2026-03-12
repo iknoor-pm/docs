@@ -1,0 +1,177 @@
+---
+title: "Save Search API"
+api: "POST https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-filters/save-search"
+description: "Save a search filter for the authenticated user - POST /search-filters/save-search"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+## Request Body
+
+<Note>
+The request body must be JSON. **`search_string` is required** (human-readable name for the saved search). All other fields are optional search criteria.
+</Note>
+
+<ParamField body="search_string" type="string" required>
+  Human-readable name for the saved search (min length 1).
+</ParamField>
+
+<ParamField body="name" type="string[]">
+  Full name(s) to search.
+</ParamField>
+
+<ParamField body="firstName" type="string[]">
+  First name(s).
+</ParamField>
+
+<ParamField body="lastName" type="string[]">
+  Last name(s).
+</ParamField>
+
+<ParamField body="title" type="string[]">
+  Job title(s).
+</ParamField>
+
+<ParamField body="excludeTitle" type="string[]">
+  Titles to exclude.
+</ParamField>
+
+<ParamField body="includeTitle" type="string[]">
+  Titles to include.
+</ParamField>
+
+<ParamField body="excludeCompany" type="string[]">
+  Companies to exclude.
+</ParamField>
+
+<ParamField body="excludeCompanyDomain" type="string[]">
+  Company domains to exclude.
+</ParamField>
+
+<ParamField body="includeCompany" type="string[]">
+  Companies to include.
+</ParamField>
+
+<ParamField body="includeCompanyDomain" type="string[]">
+  Company domains to include.
+</ParamField>
+
+<ParamField body="department" type="string[]">
+  Department(s).
+</ParamField>
+
+<ParamField body="level" type="string[]">
+  Seniority level(s).
+</ParamField>
+
+<ParamField body="companyName" type="string[]">
+  Company name(s).
+</ParamField>
+
+<ParamField body="companyDomain" type="string[]">
+  Company domain(s).
+</ParamField>
+
+<ParamField body="companyKeyword" type="string[]">
+  Company keyword(s).
+</ParamField>
+
+<ParamField body="companyHeadCount" type="string[]">
+  Company headcount(s).
+</ParamField>
+
+<ParamField body="companyRevenue" type="string[]">
+  Company revenue range(s).
+</ParamField>
+
+<ParamField body="companyIndustry" type="string[]">
+  Industry(ies).
+</ParamField>
+
+<ParamField body="companySubIndustry" type="string[]">
+  Sub-industry(ies).
+</ParamField>
+
+<ParamField body="city" type="string[]">
+  City(ies).
+</ParamField>
+
+<ParamField body="state" type="string[]">
+  State(s).
+</ParamField>
+
+<ParamField body="country" type="string[]">
+  Country(ies).
+</ParamField>
+
+<ParamField body="dontDisplayOwnedContact" type="boolean">
+  Whether to hide owned contacts.
+</ParamField>
+
+<ParamField body="limit" type="number">
+  Result limit (1–10000).
+</ParamField>
+
+<ParamField body="titleExactMatch" type="boolean">
+  Match title exactly.
+</ParamField>
+
+<ParamField body="companyExactMatch" type="boolean">
+  Match company exactly.
+</ParamField>
+
+<ParamField body="companyDomainExactMatch" type="boolean">
+  Match company domain exactly.
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-filters/save-search?api_key=YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"search_string": "Directors in United States"}'
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Search saved successfully"
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

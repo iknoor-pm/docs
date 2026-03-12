@@ -1,0 +1,90 @@
+---
+title: "Review Contacts API"
+api: "PATCH https://prospect-api.smartlead.ai/api/v1/search-email-leads/review-contacts/{filter_id}"
+description: "Review/update contacts for a filter (sync metrics and status) - PATCH /review-contacts/:filter_id"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Path Parameters
+
+<ParamField path="filter_id" type="string" required>
+  Filter ID to review contacts for (positive integer string, e.g. 327105). Pattern: ^[0-9]+$.
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X PATCH "https://prospect-api.smartlead.ai/api/v1/search-email-leads/review-contacts/327105?api_key=YOUR_API_KEY"
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Bad Request
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="404" type="Not Found">
+  Not Found
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Contacts reviewed successfully",
+  "data": {
+    "filter_id": 327105,
+    "records_updated": 150,
+    "fetch_details": {
+      "metrics": {
+        "totalContacts": 200,
+        "totalEmails": 180,
+        "noEmailFound": 20,
+        "invalidEmails": 10,
+        "catchAllEmails": 5,
+        "verifiedEmails": 165,
+        "completed": 180
+      },
+      "leads_found": 200,
+      "email_fetched": 180,
+      "catch_all_status_list": ["catch_all_verified", "catch_all_unknown"],
+      "verification_status_list": ["valid", "invalid"]
+    }
+  }
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

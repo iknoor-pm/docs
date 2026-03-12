@@ -1,0 +1,236 @@
+---
+title: "Search Contacts API"
+api: "POST https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-contacts"
+description: "Search for contacts with filters - POST /search-contacts"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+## Request Body
+
+<Note>
+The request body must be JSON. **`limit` is required** and must be between 1 and 500. **All array parameters have a maximum of 2000 items** each.
+</Note>
+
+<ParamField body="limit" type="number" required>
+  Number of contacts to return (1–500)
+</ParamField>
+
+<ParamField body="name" type="string[]">
+  Filter by full name (max 2000 items)
+</ParamField>
+
+<ParamField body="firstName" type="string[]">
+  Filter by first name (max 2000 items)
+</ParamField>
+
+<ParamField body="lastName" type="string[]">
+  Filter by last name (max 2000 items)
+</ParamField>
+
+<ParamField body="title" type="string[]">
+  Filter by job title (max 2000 items)
+</ParamField>
+
+<ParamField body="excludeTitle" type="string[]">
+  Exclude contacts with these titles (max 2000 items)
+</ParamField>
+
+<ParamField body="excludeCompany" type="string[]">
+  Exclude these companies (max 2000 items)
+</ParamField>
+
+<ParamField body="excludeCompanyDomain" type="string[]">
+  Exclude these company domains (max 2000 items)
+</ParamField>
+
+<ParamField body="includeTitle" type="string[]">
+  Include only these titles (max 2000 items)
+</ParamField>
+
+<ParamField body="includeCompany" type="string[]">
+  Include only these companies (max 2000 items)
+</ParamField>
+
+<ParamField body="includeCompanyDomain" type="string[]">
+  Include only these company domains (max 2000 items)
+</ParamField>
+
+<ParamField body="department" type="string[]">
+  Filter by department (max 2000 items)
+</ParamField>
+
+<ParamField body="level" type="string[]">
+  Filter by seniority level (max 2000 items)
+</ParamField>
+
+<ParamField body="companyName" type="string[]">
+  Filter by company name (max 2000 items)
+</ParamField>
+
+<ParamField body="companyDomain" type="string[]">
+  Filter by company domain (max 2000 items)
+</ParamField>
+
+<ParamField body="companyKeyword" type="string[]">
+  Filter by company keyword (max 2000 items)
+</ParamField>
+
+<ParamField body="companyHeadCount" type="string[]">
+  Filter by company headcount range (max 2000 items)
+</ParamField>
+
+<ParamField body="companyRevenue" type="string[]">
+  Filter by company revenue (max 2000 items)
+</ParamField>
+
+<ParamField body="companyIndustry" type="string[]">
+  Filter by industry (max 2000 items)
+</ParamField>
+
+<ParamField body="companySubIndustry" type="string[]">
+  Filter by sub-industry (max 2000 items)
+</ParamField>
+
+<ParamField body="city" type="string[]">
+  Filter by city (max 2000 items)
+</ParamField>
+
+<ParamField body="state" type="string[]">
+  Filter by state (max 2000 items)
+</ParamField>
+
+<ParamField body="country" type="string[]">
+  Filter by country (max 2000 items)
+</ParamField>
+
+<ParamField body="dontDisplayOwnedContact" type="boolean">
+  Exclude contacts already owned
+</ParamField>
+
+<ParamField body="scroll_id" type="string">
+  Pagination scroll ID for next page
+</ParamField>
+
+<ParamField body="titleExactMatch" type="boolean">
+  Match title exactly
+</ParamField>
+
+<ParamField body="companyExactMatch" type="boolean">
+  Match company exactly
+</ParamField>
+
+<ParamField body="companyDomainExactMatch" type="boolean">
+  Match company domain exactly
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-contacts?api_key=YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"limit": 10}'
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Bad Request
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+    "success": true,
+    "message": "Contacts searched successfully",
+    "data": {
+        "list": [
+            {
+                "id": "5f22b0e8cff47e0001616f81",
+                "firstName": "Orhan",
+                "lastName": "Demiri",
+                "fullName": "Orhan Demiri",
+                "title": "Generalagentur Agenturleiter",
+                "company": {
+                    "name": "Gothaer",
+                    "website": "gothaer.de"
+                },
+                "department": ["Sales"],
+                "level": "Staff",
+                "industry": "Financial Services",
+                "subIndustry": "",
+                "companyHeadCount": "1K - 10K",
+                "companyRevenue": "> $1B",
+                "country": "Germany",
+                "state": "",
+                "city": "",
+                "email": "random@example.com",
+                "linkedin": "linkedin.com/random_data",
+                "emailDeliverability": 0.95,
+                "address": "Germany"
+            },
+            {
+                "id": "5f22b1a0cff47e000161b01f",
+                "firstName": "Tim",
+                "lastName": "Ziegler",
+                "fullName": "Tim Ziegler",
+                "title": "Director of Sales and Business Development",
+                "company": {
+                    "name": "soluzione Script GmbH",
+                    "website": "soluzione.de"
+                },
+                "department": ["Sales"],
+                "level": "Director-Level",
+                "industry": "Education",
+                "subIndustry": "E-Learning",
+                "companyHeadCount": "25 - 100",
+                "companyRevenue": "$1 - 10M",
+                "country": "Germany",
+                "state": "Bavaria",
+                "city": "Bavaria",
+                "email": "random@example.com",
+                "linkedin": "linkedin.com/random_data",
+                "emailDeliverability": 0.95,
+                "address": "Bavaria"
+            }
+        ],
+        "scroll_id": "FGluY2x1ZGVfY29udGV4dF91dWlkDXF1ZXJ5QW5kRmV0Y2gBFkh5d0FSVjZaUXlpbzdWYWkxRV9DNGcAAAAAADUQGhZlT2V0Z0ptSVNyYWQwbk9kYTFsRXhB",
+        "filter_id": 327105,
+        "total_count": 16064669
+    }
+}
+```
+
+```json 401 - Unauthorized
+{
+    "statusCode": 401,
+    "success": false,
+    "message": "Unauthorized",
+    "error": "API key is required"
+}
+```
+
+</ResponseExample>

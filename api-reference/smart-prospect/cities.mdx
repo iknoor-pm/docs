@@ -1,0 +1,88 @@
+---
+title: "Cities API"
+api: "GET https://prospect-api.smartlead.ai/api/v1/search-email-leads/cities"
+description: "List cities for the authenticated user - GET /cities"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+<ParamField query="limit" type="string">
+  Number of cities to return (1–100). Pattern: ^[1-9][0-9]*$ or 100. Default: "10".
+</ParamField>
+
+<ParamField query="offset" type="string">
+  Number of cities to skip for pagination (≥ 0). Pattern: ^[0-9]+$. Default: "0".
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search string to match city names starting with this value (1–255 characters).
+</ParamField>
+
+<ParamField query="state" type="string">
+  Filter by state name(s). Comma-separated values (e.g. california,texas,florida). 1–255 chars.
+</ParamField>
+
+<ParamField query="country" type="string">
+  Filter by country name(s). Comma-separated values (e.g. usa,canada). Requires state. 1–255 chars.
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://prospect-api.smartlead.ai/api/v1/search-email-leads/cities?api_key=YOUR_API_KEY"
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Data retrieved successfully",
+  "data": [
+    { "id": 1, "city_name": "Austin" },
+    { "id": 2, "city_name": "Houston" }
+  ],
+  "pagination": {
+    "limit": 10,
+    "offset": 0,
+    "page": 1,
+    "count": 2
+  },
+  "search": null
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

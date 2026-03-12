@@ -1,0 +1,67 @@
+---
+title: "Get Lead Tags"
+api: "GET https://server.smartlead.ai/api/v1/crm/leads/tags"
+description: "Get tags associated with a specific lead"
+---
+
+## Query Parameters
+
+<ParamField query="leadId" type="number">
+  The lead ID to retrieve tags for. If omitted, returns all available tags.
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl "https://server.smartlead.ai/api/v1/crm/leads/tags?api_key=YOUR_KEY&leadId=123"
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Invalid request parameters or malformed request body
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Invalid or missing API key
+</ResponseField>
+
+<ResponseField name="422" type="Validation Error">
+  Request validation failed. Check parameter types and constraints.
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "ok": true,
+  "data": [
+    {
+      "id": 1,
+      "tag_mapping_id": 789,
+      "name": "VIP",
+      "color": "#FF5733"
+    },
+    {
+      "id": 2,
+      "tag_mapping_id": 790,
+      "name": "Enterprise",
+      "color": "#4CAF50"
+    }
+  ]
+}
+```
+
+```json 401 - Unauthorized
+{
+  "message": "Invalid API Key"
+}
+```
+
+</ResponseExample>

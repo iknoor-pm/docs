@@ -1,0 +1,91 @@
+---
+title: "Search Analytics API"
+api: "GET https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-analytics"
+description: "Retrieve search analytics (leads found, emails fetched, credits) for the authenticated user - GET /search-analytics"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+<ParamField query="filter_id" type="string">
+  Optional filter ID to get analytics for a specific filter (leads found, emails fetched for that filter). Pattern: ^[0-9]+$.
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-analytics?api_key=YOUR_API_KEY"
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Data retrieved successfully",
+  "data": {
+    "leadsFound": {
+      "current": 1200,
+      "previousMonth": 1000,
+      "percentageChange": 20,
+      "percentageChangeText": "+20%",
+      "trend": "increase",
+      "total": 5000
+    },
+    "emailsFetched": {
+      "current": 1100,
+      "previousMonth": 950,
+      "percentageChange": 15.79,
+      "percentageChangeText": "+15.79%",
+      "trend": "increase",
+      "total": 4500
+    },
+    "availableCredits": {
+      "available": 500,
+      "total": 1000,
+      "used": 500
+    },
+    "leadsFoundToday": 50,
+    "filterData": {
+      "leadsFound": 200,
+      "emailsFetched": 180
+    },
+    "maxDailyFetchLimit": 1000,
+    "maxSingleFetchLimit": 500
+  }
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

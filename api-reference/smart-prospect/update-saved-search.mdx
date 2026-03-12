@@ -1,0 +1,83 @@
+---
+title: "Update Saved Search API"
+api: "PUT https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-filters/save-search/{id}"
+description: "Update a saved search (search string/name) by ID - PUT /search-filters/save-search/:id"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  The ID of the saved search to update (positive integer string, e.g. 327105). Pattern: ^[1-9][0-9]*$.
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+## Request Body
+
+<Note>
+The request body must be JSON. **`search_string` is required** (the new name for the saved search).
+</Note>
+
+<ParamField body="search_string" type="string" required>
+  The new search string/name for the saved search (1–255 characters).
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X PUT "https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-filters/save-search/327105?api_key=YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"search_string": "Directors and VPs in United States"}'
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Bad Request
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="404" type="Not Found">
+  Not Found
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Saved search updated successfully"
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>
