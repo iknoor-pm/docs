@@ -297,12 +297,32 @@
     {
       "group": "Smart Prospect",
       "pages": [
-        "api-reference/smart-prospect/get-credits",
-        "api-reference/smart-prospect/update-credits",
-        "api-reference/smart-prospect/enrich-lead",
-        "api-reference/smart-prospect/bulk-enrich",
-        "api-reference/smart-prospect/push-to-list",
-        "api-reference/smart-prospect/push-to-campaign"
+        "api-reference/smart-prospect/search-contacts",
+        "api-reference/smart-prospect/get-contacts",
+        "api-reference/smart-prospect/fetch-contacts",
+        "api-reference/smart-prospect/find-emails",
+        "api-reference/smart-prospect/review-contacts",
+        "api-reference/smart-prospect/save-search",
+        "api-reference/smart-prospect/saved-searches",
+        "api-reference/smart-prospect/fetched-searches",
+        "api-reference/smart-prospect/recent-searches",
+        "api-reference/smart-prospect/update-saved-search",
+        "api-reference/smart-prospect/update-fetched-lead",
+        "api-reference/smart-prospect/search-analytics",
+        "api-reference/smart-prospect/reply-analytics",
+        "api-reference/smart-prospect/cities",
+        "api-reference/smart-prospect/states",
+        "api-reference/smart-prospect/countries",
+        "api-reference/smart-prospect/company",
+        "api-reference/smart-prospect/domain",
+        "api-reference/smart-prospect/industries",
+        "api-reference/smart-prospect/sub-industries",
+        "api-reference/smart-prospect/departments",
+        "api-reference/smart-prospect/levels",
+        "api-reference/smart-prospect/job-title",
+        "api-reference/smart-prospect/head-counts",
+        "api-reference/smart-prospect/revenue",
+        "api-reference/smart-prospect/keywords"
       ]
     },
     {

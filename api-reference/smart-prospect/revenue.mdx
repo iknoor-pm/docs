@@ -1,0 +1,61 @@
+---
+title: "Revenue API"
+api: "GET https://prospect-api.smartlead.ai/api/v1/search-email-leads/revenue"
+description: "List active revenue options for the authenticated user - GET /revenue"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://prospect-api.smartlead.ai/api/v1/search-email-leads/revenue?api_key=YOUR_API_KEY"
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Data retrieved successfully",
+  "data": [
+    { "id": 1, "revenue": "$1M-$10M" },
+    { "id": 2, "revenue": "$10M-$50M" }
+  ]
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

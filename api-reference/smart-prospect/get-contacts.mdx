@@ -1,0 +1,120 @@
+---
+title: "Get Contacts API"
+api: "POST https://prospect-api.smartlead.ai/api/v1/search-email-leads/get-contacts"
+description: "Retrieve saved contacts by filter or by adapt IDs - POST /get-contacts"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+## Request Body
+
+<Note>
+The request body must be JSON. **Provide either `id` (array of adapt_ids, max 200) or `filter_id` (number). Do not provide both (XOR).** When using `filter_id`, you may optionally include `limit`, `offset`, `search`, `verification_status`, and `catch_all_status`.
+</Note>
+
+<ParamField body="id" type="string[]">
+  Array of adapt_ids (max 200). Required when not using filter_id.
+</ParamField>
+
+<ParamField body="filter_id" type="number">
+  Filter ID to get data for. Required when not using id.
+</ParamField>
+
+<ParamField body="limit" type="number">
+  Number of records to return (1–1000, optional when using filter_id).
+</ParamField>
+
+<ParamField body="offset" type="number">
+  Number of records to skip (≥ 0, optional when using filter_id).
+</ParamField>
+
+<ParamField body="search" type="string">
+  Search string to filter by first_name, last_name, or full_name.
+</ParamField>
+
+<ParamField body="verification_status" type="string">
+  Filter by email verification status: valid, catch_all, or invalid.
+</ParamField>
+
+<ParamField body="catch_all_status" type="string">
+  Filter by catch-all status: catch_all_verified, catch_all_soft_bounced, catch_all_hard_bounced, catch_all_unknown, catch_all_bounced.
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://prospect-api.smartlead.ai/api/v1/search-email-leads/get-contacts?api_key=YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"filter_id": 327105, "limit": 50, "offset": 0}'
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Bad Request
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Data retrieved successfully",
+  "data": {
+    "list": [
+      {
+        "id": "5f22b0c8cff47e0001616f81",
+        "firstName": "Orhan",
+        "lastName": "Demiri",
+        "fullName": "Orhan Demiri",
+        "title": "Director",
+        "company": { "name": "Example Corp", "website": "example.com" },
+        "email": "orhan@example.com",
+        "verificationStatus": "valid",
+        "status": "completed"
+      }
+    ],
+    "pagination": {
+      "filterId": 327105,
+      "limit": 50,
+      "offset": 0,
+      "total": 100,
+      "hasMore": true
+    },
+    "totalCount": 100
+  }
+}
+```
+
+```json 401 - Unauthorized
+{
+  "statusCode": 401,
+  "success": false,
+  "message": "Unauthorized",
+  "error": "User not authenticated"
+}
+```
+
+</ResponseExample>

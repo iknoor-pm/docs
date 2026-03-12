@@ -1,0 +1,114 @@
+---
+title: "Find Emails API"
+api: "POST https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-contacts/find-emails"
+description: "Find email addresses for up to 10 contacts - POST /search-contacts/find-emails"
+---
+
+<Note>
+This endpoint requires authentication via API key passed as a query parameter (`api_key`).
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+## Request Body
+
+<Note>
+The request body must be JSON. **`contacts` is required** and must be a non-empty array with **at most 10 items**. Each contact must have **firstName**, **lastName**, and **companyDomain**.
+</Note>
+
+<ParamField body="contacts" type="object[]" required>
+  Array of contacts (max 10 items)
+</ParamField>
+
+<ParamField body="contacts.firstName" type="string" required>
+  First name of the contact
+</ParamField>
+
+<ParamField body="contacts.lastName" type="string" required>
+  Last name of the contact
+</ParamField>
+
+<ParamField body="contacts.companyDomain" type="string" required>
+  Company domain (e.g. example.com)
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://prospect-api.smartlead.ai/api/v1/search-email-leads/search-contacts/find-emails?api_key=YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contacts": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "companyDomain": "example.com"
+      }
+    ]
+  }'
+```
+
+</RequestExample>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Request successful
+</ResponseField>
+
+<ResponseField name="400" type="Bad Request">
+  Bad Request
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Unauthorized
+</ResponseField>
+
+<ResponseField name="402" type="Payment Required">
+  Payment Required
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Internal Server Error
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+{
+  "success": true,
+  "message": "Find emails completed",
+  "data": [
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "companyDomain": "example.com",
+      "email_id": "john.doe@example.com",
+      "status": "Found",
+      "verification_status": "Valid"
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "companyDomain": "acme.io",
+      "email_id": "",
+      "status": "Not Found",
+      "verification_status": null
+    }
+  ]
+}
+```
+
+```json 401 - Unauthorized
+{
+  "success": false,
+  "message": "User not authenticated",
+  "data": null
+}
+```
+
+</ResponseExample>
