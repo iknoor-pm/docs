@@ -10,7 +10,7 @@ Track whether your reply was successfully delivered. Use this to confirm email d
 
 ## Overview
 
-Returns the delivery status of a specific reply sent from the master inbox. Use the `message_id` from the email headers to look up whether the reply was delivered, is scheduled, or failed.
+Returns the delivery status of a specific reply sent from the master inbox. Use the `message_id` from the email headers to look up the current status of the reply.
 
 **Use Cases**:
 - **Delivery confirmation**: Verify that a reply was successfully sent
@@ -102,11 +102,7 @@ if (result.ok) {
     </ResponseField>
 
     <ResponseField name="data.status" type="string">
-      Delivery status of the reply. Possible values:
-      - `COMPLETED` — Email was successfully delivered
-      - `SCHEDULED` — Email is scheduled for future delivery
-      - `PENDING` — Email is queued and waiting to be sent
-      - `FAILED` — Email delivery failed
+      Delivery status of the reply (e.g., `COMPLETED` when the email was successfully delivered)
     </ResponseField>
 
     <ResponseField name="data.status_message" type="string">
@@ -151,7 +147,7 @@ if (result.ok) {
 
 <ResponseExample>
 
-```json 200 - Completed
+```json 200 - Success
 {
     "ok": true,
     "data": {
@@ -161,20 +157,6 @@ if (result.ok) {
         "event_time": "2026-03-12T11:29:05.173Z",
         "scheduled_time": null,
         "email_stats_id": "4d9ff292-b7a4-45a1-80aa-e1ac2c925404"
-    }
-}
-```
-
-```json 200 - Scheduled
-{
-    "ok": true,
-    "data": {
-        "message_id": "<abc123@yourdomain.com>",
-        "status": "SCHEDULED",
-        "status_message": "Email scheduled for delivery",
-        "event_time": "2026-03-12T10:00:00.000Z",
-        "scheduled_time": "2026-03-12T14:00:00.000Z",
-        "email_stats_id": "abc123-def456"
     }
 }
 ```
