@@ -201,6 +201,7 @@
     {
       "group": "Email Account Tags",
       "pages": [
+        "api-reference/email-account-tags/create-new",
         "api-reference/email-account-tags/create",
         "api-reference/email-account-tags/get-all",
         "api-reference/email-account-tags/assign",
