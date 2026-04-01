@@ -18,7 +18,7 @@ description: "Get performance metrics aggregated by email domain for domain anal
   End date (YYYY-MM-DD format)
 </ParamField>
 
-<ParamField query="timezone" type="string" required>
+<ParamField query="timezone" type="string">
   IANA timezone string (e.g., "America/New_York")
 </ParamField>
 
@@ -28,6 +28,18 @@ description: "Get performance metrics aggregated by email domain for domain anal
 
 <ParamField query="campaign_ids" type="string">
   Comma-separated campaign IDs
+</ParamField>
+
+<ParamField query="full_data" type="string">
+  Set to "true" to return full data set
+</ParamField>
+
+<ParamField query="limit" type="string">
+  Max number of results to return
+</ParamField>
+
+<ParamField query="offset" type="string">
+  Pagination offset
 </ParamField>
 
 <RequestExample>

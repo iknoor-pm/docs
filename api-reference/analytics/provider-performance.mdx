@@ -18,7 +18,7 @@ description: "Compare performance across email service providers (Gmail, Outlook
   End date (YYYY-MM-DD format)
 </ParamField>
 
-<ParamField query="timezone" type="string" required>
+<ParamField query="timezone" type="string">
   IANA timezone string (e.g., "America/New_York")
 </ParamField>
 
@@ -28,6 +28,10 @@ description: "Compare performance across email service providers (Gmail, Outlook
 
 <ParamField query="campaign_ids" type="string">
   Comma-separated campaign IDs
+</ParamField>
+
+<ParamField query="full_data" type="string">
+  Set to "true" to return full data set
 </ParamField>
 
 <RequestExample>

@@ -10,30 +10,14 @@ description: "Get overall health and performance statistics for all mailboxes"
   Your SmartLead API key
 </ParamField>
 
-<ParamField query="start_date" type="string">
-  Start date (YYYY-MM-DD format, optional)
-</ParamField>
-
-<ParamField query="end_date" type="string">
-  End date (YYYY-MM-DD format, optional)
-</ParamField>
-
-<ParamField query="timezone" type="string">
-  Timezone (e.g., "America/New_York", optional)
-</ParamField>
-
 <ParamField query="client_ids" type="string">
   Comma-separated client IDs
-</ParamField>
-
-<ParamField query="campaign_ids" type="string">
-  Comma-separated campaign IDs
 </ParamField>
 
 <RequestExample>
 
 ```bash cURL
-curl "https://server.smartlead.ai/api/v1/analytics/mailbox/overall-stats?api_key=YOUR_KEY&start_date=2024-01-01&end_date=2024-01-31"
+curl "https://server.smartlead.ai/api/v1/analytics/mailbox/overall-stats?api_key=YOUR_KEY"
 ```
 
 ```python Python
@@ -43,11 +27,7 @@ API_KEY = "YOUR_API_KEY"
 
 response = requests.get(
     "https://server.smartlead.ai/api/v1/analytics/mailbox/overall-stats",
-    params={
-        "api_key": API_KEY,
-        "start_date": "2024-01-01",
-        "end_date": "2024-01-31"
-    }
+    params={"api_key": API_KEY}
 )
 
 result = response.json()
@@ -58,7 +38,7 @@ print(result)
 const API_KEY = 'YOUR_API_KEY';
 
 const response = await fetch(
-  `https://server.smartlead.ai/api/v1/analytics/mailbox/overall-stats?api_key=${API_KEY}&start_date=2024-01-01&end_date=2024-01-31`
+  `https://server.smartlead.ai/api/v1/analytics/mailbox/overall-stats?api_key=${API_KEY}`
 );
 
 const result = await response.json();
