@@ -22,7 +22,7 @@ description: "Check reverse DNS configuration for sending IP addresses"
 ```bash cURL
 curl -X POST "https://smartdelivery.smartlead.ai/api/v1/smart-delivery/rdns?api_key=YOUR_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"key": "value"}'
+  -d '{}'
 ```
 
 ```python Python
@@ -33,7 +33,7 @@ API_KEY = "YOUR_API_KEY"
 response = requests.post(
     "https://smartdelivery.smartlead.ai/api/v1/smart-delivery/rdns",
     params={"api_key": API_KEY},
-    json={"key": "value"}
+    json={}
 )
 
 result = response.json()
@@ -48,7 +48,7 @@ const response = await fetch(
   {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ key: 'value' })
+    body: JSON.stringify({})
   }
 );
 
@@ -97,10 +97,36 @@ console.log(result);
 <ResponseExample>
 
 ```json 200 - Success
-{
-  "success": true,
-  "data": {}
-}
+[
+  {
+    "from_email": "campaigns@example.com",
+    "seed_accounts": [
+      {
+        "id": "seed_001",
+        "email": "seed1@gmail.com",
+        "esp": "Gmail",
+        "rdns_verified": true
+      },
+      {
+        "id": "seed_002",
+        "email": "seed2@outlook.com",
+        "esp": "Outlook",
+        "rdns_verified": true
+      }
+    ]
+  },
+  {
+    "from_email": "support@example.com",
+    "seed_accounts": [
+      {
+        "id": "seed_003",
+        "email": "seed3@yahoo.com",
+        "esp": "Yahoo",
+        "rdns_verified": false
+      }
+    ]
+  }
+]
 ```
 
 ```json 401 - Unauthorized

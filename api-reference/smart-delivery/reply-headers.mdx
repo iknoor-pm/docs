@@ -90,8 +90,10 @@ console.log(result);
 
 ```json 200 - Success
 {
-  "success": true,
-  "data": {}
+  "Return-Path": "<campaigns@example.com>",
+  "Received": "from mail.example.com ([192.168.1.100]) by mx.gmail.com with SMTP id abc123; Sat, 15 Mar 2026 15:30:00 +0000",
+  "Reveived-Spf": "pass (google.com: domain of campaigns@example.com designates 192.168.1.100 as permitted sender) client-ip=192.168.1.100;",
+  "Authentication-Results": "mx.gmail.com; dkim=pass (valid signature) header.d=example.com; spf=pass (google.com: domain of campaigns@example.com designates 192.168.1.100 as permitted sender) smtp.mailfrom=campaigns@example.com; dmarc=pass (p=quarantine dis=none) header.from=example.com"
 }
 ```
 

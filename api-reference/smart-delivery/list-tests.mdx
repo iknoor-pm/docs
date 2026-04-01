@@ -22,7 +22,7 @@ description: "List all spam tests with filtering by date, type, and status"
 ```bash cURL
 curl -X POST "https://smartdelivery.smartlead.ai/api/v1/smart-delivery/list?api_key=YOUR_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"key": "value"}'
+  -d '{}'
 ```
 
 ```python Python
@@ -33,7 +33,7 @@ API_KEY = "YOUR_API_KEY"
 response = requests.post(
     "https://smartdelivery.smartlead.ai/api/v1/smart-delivery/list",
     params={"api_key": API_KEY},
-    json={"key": "value"}
+    json={}
 )
 
 result = response.json()
@@ -48,7 +48,7 @@ const response = await fetch(
   {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ key: 'value' })
+    body: JSON.stringify({})
   }
 );
 
@@ -97,10 +97,28 @@ console.log(result);
 <ResponseExample>
 
 ```json 200 - Success
-{
-  "success": true,
-  "data": {}
-}
+[
+  {
+    "spam_test_id": "test_001",
+    "test_name": "Gmail Inbox Placement Test",
+    "test_type": "automated",
+    "status": "active",
+    "schedule_start_time": "2026-03-10T09:00:00Z",
+    "test_end_date": "2026-06-10T09:00:00Z",
+    "every_days": 7,
+    "current_test_run_no": 8
+  },
+  {
+    "spam_test_id": "test_002",
+    "test_name": "Outlook Spam Filter Test",
+    "test_type": "manual",
+    "status": "completed",
+    "schedule_start_time": "2026-03-14T14:00:00Z",
+    "test_end_date": "2026-03-20T14:00:00Z",
+    "every_days": null,
+    "current_test_run_no": 1
+  }
+]
 ```
 
 ```json 401 - Unauthorized

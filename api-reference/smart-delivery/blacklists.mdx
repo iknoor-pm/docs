@@ -89,10 +89,34 @@ console.log(result);
 <ResponseExample>
 
 ```json 200 - Success
-{
-  "success": true,
-  "data": {}
-}
+[
+  {
+    "reply_id": "reply_001",
+    "reply": {
+      "from_email": "campaigns@example.com"
+    },
+    "to_email": "seed1@gmail.com",
+    "domain": "gmail.com",
+    "blacklist_type_value": "spamhaus",
+    "total_blacklist": 0,
+    "rdns": "mail.example.com",
+    "ip": "192.168.1.100",
+    "details": "IP not listed on Spamhaus"
+  },
+  {
+    "reply_id": "reply_002",
+    "reply": {
+      "from_email": "support@example.com"
+    },
+    "to_email": "seed3@yahoo.com",
+    "domain": "yahoo.com",
+    "blacklist_type_value": "barracuda",
+    "total_blacklist": 1,
+    "rdns": "mail2.example.com",
+    "ip": "192.168.1.101",
+    "details": "IP listed on Barracuda Block List"
+  }
+]
 ```
 
 ```json 401 - Unauthorized

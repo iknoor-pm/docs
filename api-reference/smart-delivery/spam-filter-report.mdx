@@ -22,7 +22,7 @@ description: "Detailed analysis of which spam filters triggered and why"
 ```bash cURL
 curl -X POST "https://smartdelivery.smartlead.ai/api/v1/smart-delivery/spam-filter?api_key=YOUR_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"key": "value"}'
+  -d '{}'
 ```
 
 ```python Python
@@ -33,7 +33,7 @@ API_KEY = "YOUR_API_KEY"
 response = requests.post(
     "https://smartdelivery.smartlead.ai/api/v1/smart-delivery/spam-filter",
     params={"api_key": API_KEY},
-    json={"key": "value"}
+    json={}
 )
 
 result = response.json()
@@ -48,7 +48,7 @@ const response = await fetch(
   {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ key: 'value' })
+    body: JSON.stringify({})
   }
 );
 
@@ -97,10 +97,36 @@ console.log(result);
 <ResponseExample>
 
 ```json 200 - Success
-{
-  "success": true,
-  "data": {}
-}
+[
+  {
+    "from_email": "campaigns@example.com",
+    "spam_filter_details": [
+      {
+        "filter": "SpamAssassin",
+        "triggered_count": 5,
+        "trigger_percentage": 5.0,
+        "reasons": ["High spam score", "Missing DKIM signature"]
+      },
+      {
+        "filter": "Gmail Spam Filter",
+        "triggered_count": 3,
+        "trigger_percentage": 3.0,
+        "reasons": ["Suspicious sender reputation"]
+      }
+    ]
+  },
+  {
+    "from_email": "support@example.com",
+    "spam_filter_details": [
+      {
+        "filter": "Outlook Junk Filter",
+        "triggered_count": 2,
+        "trigger_percentage": 2.0,
+        "reasons": ["Low reputation score"]
+      }
+    ]
+  }
+]
 ```
 
 ```json 401 - Unauthorized

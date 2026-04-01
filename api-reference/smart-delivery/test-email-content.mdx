@@ -90,8 +90,11 @@ console.log(result);
 
 ```json 200 - Success
 {
-  "success": true,
-  "data": {}
+  "spamTest": "test_001",
+  "subject": "Special Q1 Offer - Limited Time",
+  "text": "Get 30% off your next purchase. Claim your offer at https://example.com/offer",
+  "html": "<!DOCTYPE html><html><head><title>Q1 Offer</title></head><body><h1>Special Q1 Offer</h1><p>Get 30% off your next purchase</p><a href=\"https://example.com/offer\">Claim Offer</a></body></html>",
+  "rawEmailContent": "From: campaigns@example.com\nSubject: Special Q1 Offer - Limited Time\nContent-Type: text/html\n\n<!DOCTYPE html><html><body><h1>Special Q1 Offer</h1></body></html>"
 }
 ```
 

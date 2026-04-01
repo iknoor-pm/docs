@@ -106,8 +106,25 @@ console.log(result);
 
 ```json 200 - Success
 {
-  "success": true,
-  "data": {}
+  "ok": true,
+  "data": [
+    {
+      "id": 2001,
+      "from_email": "sales@mycompany.com",
+      "from_name": "Sarah Lee",
+      "type": "SMTP",
+      "warmup_enabled": true,
+      "warmup_reputation": "excellent"
+    },
+    {
+      "id": 2002,
+      "from_email": "outreach@mycompany.com",
+      "from_name": "David Smith",
+      "type": "SMTP",
+      "warmup_enabled": true,
+      "warmup_reputation": "excellent"
+    }
+  ]
 }
 ```
 

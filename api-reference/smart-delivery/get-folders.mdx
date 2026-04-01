@@ -89,10 +89,24 @@ console.log(result);
 <ResponseExample>
 
 ```json 200 - Success
-{
-  "success": true,
-  "data": {}
-}
+[
+  {
+    "id": "folder_001",
+    "name": "Q1 2026 Tests",
+    "user_id": "user_001",
+    "client_id": "client_001",
+    "created_at": "2026-01-01T10:00:00Z",
+    "updated_at": "2026-03-15T14:30:00Z"
+  },
+  {
+    "id": "folder_002",
+    "name": "Q4 2025 Archive",
+    "user_id": "user_001",
+    "client_id": "client_001",
+    "created_at": "2025-10-01T10:00:00Z",
+    "updated_at": "2025-12-31T23:59:59Z"
+  }
+]
 ```
 
 ```json 401 - Unauthorized

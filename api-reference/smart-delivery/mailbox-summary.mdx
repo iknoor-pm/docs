@@ -89,10 +89,41 @@ console.log(result);
 <ResponseExample>
 
 ```json 200 - Success
-{
-  "success": true,
-  "data": {}
-}
+[
+  {
+    "id": "mb_001",
+    "from_email": "campaigns@example.com",
+    "esp": "Gmail",
+    "total_email_count": 100,
+    "inbox_count": 91,
+    "tab_count": 6,
+    "spam_count": 3,
+    "failed_count": 0,
+    "placement_score": 91.0
+  },
+  {
+    "id": "mb_002",
+    "from_email": "campaigns@example.com",
+    "esp": "Outlook",
+    "total_email_count": 100,
+    "inbox_count": 88,
+    "tab_count": 8,
+    "spam_count": 4,
+    "failed_count": 0,
+    "placement_score": 88.0
+  },
+  {
+    "id": "mb_003",
+    "from_email": "support@example.com",
+    "esp": "Yahoo",
+    "total_email_count": 100,
+    "inbox_count": 85,
+    "tab_count": 10,
+    "spam_count": 5,
+    "failed_count": 0,
+    "placement_score": 85.0
+  }
+]
 ```
 
 ```json 401 - Unauthorized
