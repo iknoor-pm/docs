@@ -22,8 +22,8 @@ description: "Get account-wide overall statistics for date range with sent, open
   End date in YYYY-MM-DD format
 </ParamField>
 
-<ParamField query="timezone" type="string" required>
-  IANA timezone string (e.g. "America/New_York")
+<ParamField query="timezone" type="string">
+  Timezone string (e.g. "America/New_York"), optional
 </ParamField>
 
 <ParamField query="client_ids" type="string">
@@ -34,12 +34,12 @@ description: "Get account-wide overall statistics for date range with sent, open
   Comma-separated campaign IDs (optional)
 </ParamField>
 
-<ParamField query="is_agency" type="boolean">
-  Filter for agency accounts (optional)
+<ParamField query="is_agency" type="string">
+  Set to "true" to filter for agency accounts (optional)
 </ParamField>
 
-<ParamField query="full_data" type="boolean">
-  Return full data set (optional)
+<ParamField query="full_data" type="string">
+  Set to "true" to return full data set (optional)
 </ParamField>
 
 ## Request Body
@@ -162,7 +162,3 @@ console.log(result);
 ```
 
 </ResponseExample>
-
-## Related Endpoints
-
-- [Related endpoint](#)

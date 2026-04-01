@@ -22,8 +22,8 @@ description: "Get performance metrics for each campaign with engagement rates an
   End date in YYYY-MM-DD format
 </ParamField>
 
-<ParamField query="timezone" type="string" required>
-  IANA timezone string (e.g. "America/New_York")
+<ParamField query="timezone" type="string">
+  Timezone string (e.g. "America/New_York"), optional
 </ParamField>
 
 <ParamField query="client_ids" type="string">
@@ -34,16 +34,16 @@ description: "Get performance metrics for each campaign with engagement rates an
   Comma-separated campaign IDs (optional)
 </ParamField>
 
-<ParamField query="limit" type="integer">
+<ParamField query="limit" type="string">
   Max number of results to return (optional)
 </ParamField>
 
-<ParamField query="offset" type="integer">
+<ParamField query="offset" type="string">
   Pagination offset (optional)
 </ParamField>
 
-<ParamField query="full_data" type="boolean">
-  Return full data set (optional)
+<ParamField query="full_data" type="string">
+  Set to "true" to return full data set (optional)
 </ParamField>
 
 ## Request Body
@@ -170,7 +170,3 @@ console.log(result);
 ```
 
 </ResponseExample>
-
-## Related Endpoints
-
-- [Related endpoint](#)
