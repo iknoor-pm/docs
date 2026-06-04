@@ -388,10 +388,6 @@ The response is an array of email account objects, each containing:
 ]
 ```
 
-<Info>
-The `tags` array is always included in the response. The `campaign_ids` array is only included when `fetch_campaigns=true` is passed.
-</Info>
-
 ```json 401 - Unauthorized
 {
   "message": "Invalid API Key"
@@ -407,6 +403,10 @@ The `tags` array is always included in the response. The `campaign_ids` array is
 </ResponseExample>
 
 ## Usage Notes
+
+<Info>
+The `tags` array is always included in the response. The `campaign_ids` array is only included when `fetch_campaigns=true` is passed as a query parameter.
+</Info>
 
 <Info>
 Passwords are base64 encoded in the response for security. Decode them before use in your SMTP/IMAP clients.
