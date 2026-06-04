@@ -1,0 +1,123 @@
+---
+title: "Get All Tags"
+api: "GET https://server.smartlead.ai/api/v1/email-accounts/tags"
+description: "Retrieve all inbox tags belonging to the authenticated user"
+---
+
+<Note>
+Returns all tags created by the user, independent of which email accounts they are assigned to. Use this to get a master list of available tags for filtering or display purposes.
+</Note>
+
+## Query Parameters
+
+<ParamField query="api_key" type="string" required>
+  Your SmartLead API key for authentication
+</ParamField>
+
+<RequestExample>
+
+```bash cURL
+curl "https://server.smartlead.ai/api/v1/email-accounts/tags?api_key=YOUR_API_KEY"
+```
+
+```python Python
+import requests
+
+API_KEY = "YOUR_API_KEY"
+
+response = requests.get(
+    "https://server.smartlead.ai/api/v1/email-accounts/tags",
+    params={"api_key": API_KEY}
+)
+
+tags = response.json()
+for tag in tags:
+    print(f"Tag: {tag['name']} (ID: {tag['id']}, Color: {tag['color']})")
+```
+
+```javascript JavaScript
+const API_KEY = 'YOUR_API_KEY';
+
+const response = await fetch(
+  `https://server.smartlead.ai/api/v1/email-accounts/tags?api_key=${API_KEY}`
+);
+
+const tags = await response.json();
+tags.forEach(tag => {
+  console.log(`Tag: ${tag.name} (ID: ${tag.id}, Color: ${tag.color})`);
+});
+```
+
+</RequestExample>
+
+## Response Fields
+
+The response is an array of tag objects:
+
+<ResponseField name="id" type="number">
+  Unique tag identifier
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Tag display name
+</ResponseField>
+
+<ResponseField name="color" type="string">
+  Tag color as a hex code (e.g., `#B1FCCF`)
+</ResponseField>
+
+## Response Codes
+
+<ResponseField name="200" type="Success">
+  Tags retrieved successfully
+</ResponseField>
+
+<ResponseField name="401" type="Unauthorized">
+  Invalid or missing API key
+</ResponseField>
+
+<ResponseField name="500" type="Internal Server Error">
+  Server error occurred
+</ResponseField>
+
+<ResponseExample>
+
+```json 200 - Success
+[
+  {
+    "id": 10,
+    "name": "Winners",
+    "color": "#B1FCCF"
+  },
+  {
+    "id": 15,
+    "name": "Webinar Emails",
+    "color": "#F5B1FC"
+  },
+  {
+    "id": 22,
+    "name": "High Priority",
+    "color": "#FCB1B1"
+  }
+]
+```
+
+```json 401 - Unauthorized
+{
+  "ok": false,
+  "message": "User authentication required."
+}
+```
+
+```json 500 - Internal Server Error
+{
+  "error": "Failed to fetch email account tags."
+}
+```
+
+</ResponseExample>
+
+## Related Endpoints
+
+- [Get All Email Accounts](/api-reference/email-accounts/get-all)
+- [Get Email Account by ID](/api-reference/email-accounts/get-by-id)
