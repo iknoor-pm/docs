@@ -50,6 +50,10 @@ Returns email accounts with SMTP/IMAP credentials, warmup status, and campaign a
   Filter by client ID (for multi-tenant accounts)
 </ParamField>
 
+<ParamField query="fetch_campaigns" type="string">
+  If `true`, includes an array of campaign IDs for each email account. Returns a `campaign_ids` field on each account object.
+</ParamField>
+
 <RequestExample>
 
 ```bash cURL
@@ -275,6 +279,32 @@ The response is an array of email account objects, each containing:
   </Expandable>
   </ResponseField>
 </Accordion>
+
+<Accordion title="Tags">
+  <ResponseField name="tags" type="array">
+    Tags assigned to this email account. Always included in the response.
+
+  <Expandable title="Tag properties">
+    <ResponseField name="tag_id" type="number">
+      Unique tag identifier
+    </ResponseField>
+
+    <ResponseField name="tag_name" type="string">
+      Tag display name
+    </ResponseField>
+
+    <ResponseField name="tag_color" type="string">
+      Tag color as a hex code (e.g., `#F5B1FC`)
+    </ResponseField>
+  </Expandable>
+  </ResponseField>
+</Accordion>
+
+<Accordion title="Campaign IDs (Optional)">
+  <ResponseField name="campaign_ids" type="array">
+    Array of campaign IDs using this email account. Only included when `fetch_campaigns=true` is passed as a query parameter.
+  </ResponseField>
+</Accordion>
 </AccordionGroup>
 
 ## Response Codes
@@ -331,6 +361,18 @@ The response is an array of email account objects, each containing:
     "daily_sent_count": 25,
     "client_id": null,
     "campaign_count": 3,
+    "tags": [
+      {
+        "tag_id": 10,
+        "tag_name": "Winners",
+        "tag_color": "#B1FCCF"
+      },
+      {
+        "tag_id": 15,
+        "tag_name": "Webinar Emails",
+        "tag_color": "#F5B1FC"
+      }
+    ],
     "warmup_details": {
       "status": "ACTIVE",
       "total_sent_count": 450,
@@ -340,7 +382,8 @@ The response is an array of email account objects, each containing:
       "warmup_created_at": "2025-01-15T10:30:00.000Z",
       "reply_rate": 15,
       "blocked_reason": null
-    }
+    },
+    "campaign_ids": [101, 102, 103]
   }
 ]
 ```
@@ -362,6 +405,10 @@ The response is an array of email account objects, each containing:
 ## Usage Notes
 
 <Info>
+The `tags` array is always included in the response. The `campaign_ids` array is only included when `fetch_campaigns=true` is passed as a query parameter.
+</Info>
+
+<Info>
 Passwords are base64 encoded in the response for security. Decode them before use in your SMTP/IMAP clients.
 </Info>
 
@@ -375,5 +422,6 @@ Use filters to find specific accounts:
 ## Related Endpoints
 
 - [Get Email Account by ID](/api-reference/email-accounts/get-by-id)
+- [Get All Tags](/api-reference/email-accounts/tags)
 - [Add SMTP Email Account](/api-reference/email-accounts/add-smtp)
 - [Update Email Account](/api-reference/email-accounts/update)
