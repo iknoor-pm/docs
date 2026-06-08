@@ -53,8 +53,16 @@ Forwards an email to specified recipients. Useful for collaboration, escalation,
   Custom subject line for the forwarded email. Overrides the original campaign's subject when provided. When omitted, the original campaign subject is used.
 </ParamField>
 
+<ParamField body="cc_emails" type="string">
+  Optional comma-separated CC recipient email addresses.
+</ParamField>
+
+<ParamField body="bcc_emails" type="string">
+  Optional comma-separated BCC recipient email addresses.
+</ParamField>
+
 <Note>
-  Both `forward_email_body` and `forward_email_subject` are optional. Existing integrations that send only `message_id`, `stats_id`, and `to_emails` are fully backwards-compatible — behaviour is unchanged when these fields are omitted.
+  `forward_email_body`, `forward_email_subject`, `cc_emails`, and `bcc_emails` are optional. Existing integrations that send only `message_id`, `stats_id`, and `to_emails` are fully backwards-compatible — behaviour is unchanged when these fields are omitted.
 </Note>
 
 <RequestExample>
@@ -66,6 +74,8 @@ curl -X POST "https://server.smartlead.ai/api/v1/campaigns/12345/forward-email?a
     "message_id": "msg-abc-123",
     "stats_id": "stats-abc-123",
     "to_emails": "manager@company.com,sales@company.com",
+    "cc_emails": "teamlead@company.com",
+    "bcc_emails": "audit@company.com",
     "forward_email_subject": "FYI – please review",
     "forward_email_body": "<p>Sharing this thread for your visibility.</p>"
   }'
@@ -83,6 +93,8 @@ def forward_email(
     to_emails,
     forward_email_body=None,
     forward_email_subject=None,
+    cc_emails=None,
+    bcc_emails=None,
 ):
     """Forward an email to other recipients"""
     payload = {
@@ -94,6 +106,10 @@ def forward_email(
         payload["forward_email_body"] = forward_email_body
     if forward_email_subject is not None:
         payload["forward_email_subject"] = forward_email_subject
+    if cc_emails is not None:
+        payload["cc_emails"] = cc_emails
+    if bcc_emails is not None:
+        payload["bcc_emails"] = bcc_emails
 
     response = requests.post(
         f"https://server.smartlead.ai/api/v1/campaigns/{campaign_id}/forward-email",
@@ -117,6 +133,8 @@ forward_email(
     message_id="msg-abc-124",
     stats_id="stats-abc-124",
     to_emails="sales@company.com,support@company.com",
+    cc_emails="teamlead@company.com",
+    bcc_emails="audit@company.com",
     forward_email_subject="FYI – please review",
     forward_email_body="<p>Sharing this thread for your visibility.</p>",
 )
@@ -150,6 +168,8 @@ await forwardEmail(12345, {
   message_id: 'msg-abc-124',
   stats_id: 'stats-abc-124',
   to_emails: 'sales@company.com,support@company.com',
+  cc_emails: 'teamlead@company.com',
+  bcc_emails: 'audit@company.com',
   forward_email_subject: 'FYI – please review',
   forward_email_body: '<p>Sharing this thread for your visibility.</p>',
 });
