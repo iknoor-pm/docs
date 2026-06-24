@@ -170,3 +170,22 @@ console.log(result);
 ```
 
 </ResponseExample>
+
+## How these metrics are calculated
+
+<Note>
+  Shared rules (inclusive date boundaries, unique vs raw counts, rate formulas) are documented once in [How Analytics Metrics Are Calculated](/api-reference/analytics/how-metrics-are-calculated).
+</Note>
+
+One row is returned per campaign. All metrics are scoped to emails **sent** within the date range (`sent_time`), inclusive on both ends; a single date returns that one full day.
+
+| Field | How it's calculated |
+| --- | --- |
+| `sent` / `opened` / `replied` / `bounced` | Raw event counts within the range. Additive. |
+| `positive_replied` | `COUNT(DISTINCT lead)` tagged **positive** (`sentiment_type = 'positive'`), attributed to send date, no reply-event requirement. Same definition as the campaign analytics page and the [overall-stats tile](/api-reference/analytics/overview). |
+| `unique_lead_count` | `COUNT(DISTINCT lead)` sent at least one email in the range (deduplicated per campaign by email). **Not** additive across days. |
+| `unique_open_count` | `COUNT(DISTINCT lead)` that opened in the range. Not additive across days. |
+| `open_rate` | `unique_open_count / unique_lead_count` |
+| `reply_rate` | `replied / unique_open_count` (falls back to `unique_lead_count` when open tracking is off, e.g. plain-text sends) |
+| `positive_reply_rate` | `positive_replied / replied` |
+| `bounce_rate` | `bounced / unique_lead_count` (per unique lead, not per email sent) |

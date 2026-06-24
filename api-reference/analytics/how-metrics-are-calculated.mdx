@@ -1,0 +1,65 @@
+---
+title: "How Analytics Metrics Are Calculated"
+description: "The shared rules behind every Global Analytics endpoint — date boundaries, time axes, unique vs raw counts, and rate formulas"
+---
+
+This page explains the rules that apply across **all** Global Analytics endpoints. Each endpoint page also has its own per-field breakdown, but the concepts below are the same everywhere — read this once and the individual endpoints make a lot more sense.
+
+## Two kinds of numbers
+
+The fields in an analytics response are not all the same kind of metric. This is the single most important thing to understand, and it's the usual cause of "the numbers don't add up".
+
+- **Raw event counts** — `sent`, `opened`, `replied`, `bounced`, `unsubscribed`. These count events. They are **additive**: the value for a date range equals the sum of the per-day values.
+- **Unique counts** — `unique_lead_count`, `unique_open_count`, `positive_replied`. These count **distinct leads** over the requested range (`COUNT(DISTINCT lead)`, deduplicated per campaign by email address). They are **not additive**.
+
+A lead emailed on two different days counts **once** in a range query, but once in **each** single-day query. So if you pull each day separately and add them up, the unique counts (and every rate derived from them) come out inflated.
+
+<Warning>
+  You cannot reconstruct a multi-day range by summing per-day responses. The raw counts will match, but the unique counts and all rates will not. To get an accurate figure for any period, **query that period directly** rather than summing individual days.
+</Warning>
+
+## Date range behaviour
+
+`start_date` and `end_date` are **inclusive on both ends**. Internally the window runs from `start_date 00:00:00` to `end_date 23:59:59`:
+
+```text
+sent_time >= 'start_date 00:00:00' AND sent_time <= 'end_date 23:59:59'
+```
+
+- Passing the **same date** for start and end returns that one full day (`00:00:00`–`23:59:59`), not an empty result.
+- When a `timezone` is supplied, the day boundaries are calculated in that timezone; otherwise UTC is used.
+
+## Time axes: send date vs reply date
+
+Every record is anchored to a point in time. Endpoints differ in **which timestamp** they filter and group by:
+
+- **Send date** (`sent_time`) — the day the email went out. This is the default axis for `sent`, `opened`, `replied`, `bounced`, and **positive replies** (see below). The `*-by-sent-time` endpoints make this explicit.
+- **Event date** — some day-wise breakdowns bucket opens by open time and replies by reply time, so each metric lands on the day the event happened.
+
+When comparing two endpoints that look similar, check which axis each uses — a reply that arrives days after the send lands on a different day depending on the axis.
+
+## Rate formulas
+
+All rates are percentages computed against the **unique** counts, not raw sends:
+
+| Rate | Formula |
+| --- | --- |
+| `open_rate` | `unique_open_count / unique_lead_count` |
+| `reply_rate` | `replied / unique_open_count` — falls back to `unique_lead_count` when open tracking is off (plain-text sends, or tracking disabled) |
+| `positive_reply_rate` | `positive_replied / replied` |
+| `bounce_rate` | `bounced / unique_lead_count` |
+| `client_health` | `positive_replied / unique_lead_count` |
+
+<Note>
+  `bounce_rate` is calculated per **unique lead** (`bounced / unique_lead_count`), not per email sent. If you want the deliverability-style figure (`bounced / sent`), the raw `bounced` and `sent` counts are both in the response and you can compute it yourself.
+</Note>
+
+## Positive replies
+
+A **positive reply** is counted as a **distinct lead whose category sentiment is `positive`** (`lead_categories.sentiment_type = 'positive'`), attributed to the **send date** of that lead's email.
+
+There is **no reply-event requirement** in the count — it is purely the set of leads currently tagged positive, on the same send-date axis as `sent` and `replied`. This is the same definition the single-campaign analytics page uses, so the headline tile, the day-wise positive chart, and the campaign page all reconcile.
+
+<Note>
+  Because positives are attributed to **send date** (not reply-received date), a positive reply that arrives later is counted on the day its email was originally sent — exactly like `replied` already behaves. Re-categorising a lead (e.g. marking it positive later) will change historical days, since the count reflects the lead's current category.
+</Note>

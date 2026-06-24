@@ -298,6 +298,7 @@
     {
       "group": "Global Analytics",
       "pages": [
+        "api-reference/analytics/how-metrics-are-calculated",
         "api-reference/analytics/overview",
         "api-reference/analytics/campaign-list",
         "api-reference/analytics/client-list",

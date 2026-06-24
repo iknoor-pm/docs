@@ -140,3 +140,22 @@ console.log(result);
 ```
 
 </ResponseExample>
+
+## How these metrics are calculated
+
+<Note>
+  Shared rules (inclusive date boundaries, unique vs raw counts, rate formulas) are documented once in [How Analytics Metrics Are Calculated](/api-reference/analytics/how-metrics-are-calculated).
+</Note>
+
+Unlike the [event-date day-wise endpoint](/api-reference/analytics/day-wise-stats), **every metric here is bucketed by the day the email was sent** (`sent_time`). An open or reply is counted on the date its email went out, regardless of when the open/reply actually happened — which is what makes this view useful for analysing send-schedule performance.
+
+| Field | How it's calculated |
+| --- | --- |
+| `sent` | Emails sent that day. Raw additive count. |
+| `opened` | Emails (sent that day) that were later opened. Raw additive count. |
+| `replied` | Emails (sent that day) that later received a genuine reply. Raw additive count. |
+| `bounced` | Emails sent that day that bounced. Raw additive count. |
+| `unsubscribed` | Leads who unsubscribed. Raw additive count. |
+| `unique_lead_reached` | `COUNT(DISTINCT lead)` reached that day, deduplicated per campaign by email. This is a **unique** count, not additive across days. |
+
+The raw counts are additive across days; `unique_lead_reached` is not (a lead reached on two days is counted once per day). Dates are inclusive on both ends — `sent_time >= start 00:00:00 AND sent_time <= end 23:59:59` — and a single date returns that one full day. `timezone` is required so the daily boundaries are drawn in your local time.

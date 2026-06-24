@@ -124,20 +124,21 @@ console.log(result);
 
 ```json 200 - Success
 {
-  "ok": true,
+  "success": true,
+  "message": "Overall Stats fetched successfully!",
   "data": {
     "overall_stats": {
-      "sent": 1250,
-      "opened": 425,
-      "replied": 94,
-      "bounced": 23,
-      "unique_lead_count": 1100,
-      "unique_open_count": 380,
-      "positive_replied": 52,
-      "open_rate": "34%",
-      "reply_rate": "7.5%",
-      "positive_reply_rate": "4.2%",
-      "bounce_rate": "1.8%"
+      "sent": "345805",
+      "opened": "0",
+      "replied": "1732",
+      "bounced": "2015",
+      "unique_lead_count": "299503",
+      "unique_open_count": "0",
+      "positive_replied": 280,
+      "open_rate": "0.00%",
+      "reply_rate": "0.58%",
+      "positive_reply_rate": "16.17%",
+      "bounce_rate": "0.67%"
     }
   }
 }
@@ -162,3 +163,67 @@ console.log(result);
 ```
 
 </ResponseExample>
+
+## How these metrics are calculated
+
+<Note>
+  The rules below (inclusive date boundaries, send-date attribution, unique vs raw counts, and the rate formulas) are shared across every Global Analytics endpoint. See [How Analytics Metrics Are Calculated](/api-reference/analytics/how-metrics-are-calculated) for the full explanation.
+</Note>
+
+The fields in `overall_stats` are not all the same kind of number. Some are raw event counts and some are unique (deduplicated) counts, and this affects how they behave across date ranges.
+
+### Field definitions
+
+<ResponseField name="sent" type="number">
+  Total emails sent in the range. Raw event count.
+</ResponseField>
+
+<ResponseField name="opened" type="number">
+  Total open events in the range. Raw event count (a single lead opening twice counts twice).
+</ResponseField>
+
+<ResponseField name="replied" type="number">
+  Total reply events in the range. Raw event count.
+</ResponseField>
+
+<ResponseField name="bounced" type="number">
+  Total bounce events in the range. Raw event count.
+</ResponseField>
+
+<ResponseField name="unique_lead_count" type="number">
+  Count of **distinct leads** that were sent at least one email in the range, deduplicated per campaign by email address. This is `COUNT(DISTINCT lead)` across the whole range, **not** a sum of per-day values.
+</ResponseField>
+
+<ResponseField name="unique_open_count" type="number">
+  Count of **distinct leads** that opened at least one email in the range. Like `unique_lead_count`, this is deduplicated across the whole range.
+</ResponseField>
+
+<ResponseField name="positive_replied" type="number">
+  Count of **distinct leads tagged as positive** (`sentiment_type = 'positive'`), attributed to the **send date** of their email — no reply-event requirement. This uses the same definition as the single-campaign analytics page, so the tile, the day-wise positive chart, and the campaign page all reconcile. A positive reply that arrives later is counted on the day its email was sent.
+</ResponseField>
+
+### Rates
+
+All rates are computed against the unique counts above, not against raw sends:
+
+| Rate | Formula |
+| --- | --- |
+| `open_rate` | `unique_open_count / unique_lead_count` |
+| `reply_rate` | `replied / unique_open_count` (falls back to `unique_lead_count` when open tracking is disabled, e.g. plain-text sends) |
+| `positive_reply_rate` | `positive_replied / replied` |
+| `bounce_rate` | `bounced / unique_lead_count` |
+
+<Note>
+  `bounce_rate` is reported per unique lead (`bounced / unique_lead_count`), not per email sent. If you need the deliverability-style figure (`bounced / sent`), both `bounced` and `sent` are in the response and you can compute it yourself.
+</Note>
+
+### Date range behaviour (important)
+
+`start_date` and `end_date` are **inclusive on both ends** (from `00:00:00` to `23:59:59` in the requested timezone), and they filter on the time the email was **sent**.
+
+Because the unique counts are deduplicated across the entire requested range, **you cannot reconstruct a multi-day range by summing per-day responses**:
+
+- `sent`, `opened`, `replied` and `bounced` are additive — summing three single-day responses equals the 3-day range response.
+- `unique_lead_count` and `unique_open_count` are **not** additive. A lead emailed on two different days counts once in a range query, but once in each single-day query — so summing days inflates the unique totals (and every rate derived from them).
+
+For an accurate figure over any period, query that period directly rather than summing individual days.
