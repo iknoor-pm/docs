@@ -141,3 +141,19 @@ console.log(result);
 ```
 
 </ResponseExample>
+
+## How these metrics are calculated
+
+<Note>
+  Shared rules (inclusive date boundaries, send-date attribution) are documented once in [How Analytics Metrics Are Calculated](/api-reference/analytics/how-metrics-are-calculated).
+</Note>
+
+One row is returned per campaign, breaking its replies down by the **sentiment category** of the lead. Each value is a `COUNT(DISTINCT lead)`, so a lead is counted once per category no matter how many times it replied.
+
+| Field | How it's calculated |
+| --- | --- |
+| `positive_reply` | Distinct leads whose category sentiment is **positive**. |
+| `neutral_reply` | Distinct leads whose category sentiment is **neutral**. |
+| `negative_reply` | Distinct leads whose category sentiment is **negative**. |
+
+The categories come from how each lead is tagged in the inbox, and `positive_reply` uses the same definition as `positive_replied` elsewhere — distinct positive-tagged leads, attributed to the **send date** of their email. Counts are scoped to the date range inclusive on both ends; a single date returns that one full day. Because these are distinct-lead counts, they are not additive across separate per-day queries.

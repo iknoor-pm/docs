@@ -144,3 +144,22 @@ console.log(result);
 ```
 
 </ResponseExample>
+
+## How these metrics are calculated
+
+<Note>
+  Shared rules (inclusive date boundaries, unique vs raw counts, rate formulas) are documented once in [How Analytics Metrics Are Calculated](/api-reference/analytics/how-metrics-are-calculated).
+</Note>
+
+This endpoint returns a daily breakdown where **each metric sits on its own event date**:
+
+| Field | How it's calculated |
+| --- | --- |
+| `sent` | Counted on the day the email was **sent**. Raw additive count. |
+| `opened` | Counted on the day the **open happened**. Raw additive count (a lead opening twice counts twice). |
+| `replied` | Counted on the day the **reply arrived**. Raw additive count. |
+| `bounced` / `unsubscribed` | Returned as `0` on this endpoint. For a daily bounce breakdown, use [Day-wise Stats by Sent Time](/api-reference/analytics/day-wise-sent-time). |
+
+Because each metric is anchored to the day its own event occurred, an email sent on one day and the reply it generated on a later day land on **different rows**. If you want every metric attributed to the **send date** instead (so opens and replies line up with the day the email went out), use the [by sent time](/api-reference/analytics/day-wise-sent-time) variant.
+
+All counts here are raw event counts, so they are additive across days. Dates are inclusive on both ends; a single date (start equal to end) returns that one full day.

@@ -138,3 +138,17 @@ console.log(result);
 ```
 
 </ResponseExample>
+
+## How these metrics are calculated
+
+<Note>
+  Shared rules (inclusive date boundaries, send-date attribution, unique vs raw counts) are documented once in [How Analytics Metrics Are Calculated](/api-reference/analytics/how-metrics-are-calculated).
+</Note>
+
+| Field | How it's calculated |
+| --- | --- |
+| `positive_replied` | `COUNT(DISTINCT lead)` for leads tagged as **positive** (`sentiment_type = 'positive'`), bucketed by the day their email was **sent** (`sent_time`). No reply-event requirement. |
+
+Positive replies are attributed to the **send date** here, so this lines up with the rest of the platform (the headline tile, the single-campaign page, and the [day-wise positive endpoint](/api-reference/analytics/day-wise-positive-reply)). Use this view to see which **sending days** produced positive replies.
+
+`positive_replied` is a **unique** (distinct-lead) count and is not additive across days. Dates are inclusive on both ends — `sent_time >= start 00:00:00 AND sent_time <= end 23:59:59` — and a single date returns that one full day.
