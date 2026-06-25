@@ -147,8 +147,8 @@ console.log(result);
 
 | Field | How it's calculated |
 | --- | --- |
-| `positive_replied` | `COUNT(DISTINCT lead)` for leads tagged as **positive** (`sentiment_type = 'positive'`), bucketed on the **send date** of their email. No reply-event requirement — it is the set of leads currently tagged positive, on the same send-date axis as `sent` and `replied`. |
+| `positive_replied` | `COUNT(DISTINCT lead)` for leads tagged as **positive** (`sentiment_type = 'positive'`) that sent a genuine reply (replied, not ignored, not bounced), bucketed on the **date the reply was received**. |
 
-This is the same positive-reply definition used by the headline tile (`overall-stats-v2`), the single-campaign analytics page, and the [by sent time](/api-reference/analytics/day-wise-positive-sent-time) variant — so all of them reconcile. A positive reply that arrives later is counted on the day its email was originally **sent**, not the day the reply came in.
+This is the same definition and reply-date axis as the headline tile (`overall-stats-v2`). Because each positive lead's reply falls on a single date, the **daily values here sum to the overall range total** for the same window. (If you instead want positives attributed to the day the email was *sent*, use the [by sent time](/api-reference/analytics/day-wise-positive-sent-time) variant.)
 
-`positive_replied` is a **unique** (distinct-lead) count, so it is not additive across days. Dates are inclusive on both ends, and a single date returns that one full day.
+`positive_replied` is a **distinct-lead** count. The lead category is mutable, so re-categorising a lead changes historical days. Dates are inclusive on both ends, and a single date returns that one full day.

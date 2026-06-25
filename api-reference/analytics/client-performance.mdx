@@ -172,7 +172,7 @@ One row is returned per client, aggregating every campaign that belongs to that 
 | --- | --- |
 | `total_campaigns_count` | `COUNT(DISTINCT campaign)` for the client with sends in the range. |
 | `sent` / `opened` / `replied` / `bounced` | Raw event counts, summed across the client's campaigns. Additive. |
-| `positive_replied` | `COUNT(DISTINCT lead)` tagged **positive** (`sentiment_type = 'positive'`), attributed to send date, no reply-event requirement. |
+| `positive_replied` | Distinct leads tagged **positive** (`sentiment_type = 'positive'`). **Note:** the date attribution on this breakdown endpoint differs from the [`overall-stats-v2` tile](/api-reference/analytics/overview) (which is reply-date) — don't assume the two match for the same window. Use `overall-stats-v2` or the day-wise positive endpoints as the source of truth for positive counts. |
 | `unique_lead_count` | `COUNT(DISTINCT lead)` sent at least one email in the range (deduplicated per campaign by email). **Not** additive across days. |
 | `unique_open_count` | `COUNT(DISTINCT lead)` that opened in the range. Not additive across days. |
 | `client_health` | `positive_replied / unique_lead_count` |

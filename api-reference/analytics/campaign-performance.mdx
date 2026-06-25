@@ -182,7 +182,7 @@ One row is returned per campaign. All metrics are scoped to emails **sent** with
 | Field | How it's calculated |
 | --- | --- |
 | `sent` / `opened` / `replied` / `bounced` | Raw event counts within the range. Additive. |
-| `positive_replied` | `COUNT(DISTINCT lead)` tagged **positive** (`sentiment_type = 'positive'`), attributed to send date, no reply-event requirement. Same definition as the campaign analytics page and the [overall-stats tile](/api-reference/analytics/overview). |
+| `positive_replied` | Distinct leads tagged **positive** (`sentiment_type = 'positive'`). **Note:** the date attribution on this breakdown endpoint differs from the [`overall-stats-v2` tile](/api-reference/analytics/overview) (which is reply-date) — don't assume the two match for the same window. Use `overall-stats-v2` or the day-wise positive endpoints as the source of truth for positive counts. |
 | `unique_lead_count` | `COUNT(DISTINCT lead)` sent at least one email in the range (deduplicated per campaign by email). **Not** additive across days. |
 | `unique_open_count` | `COUNT(DISTINCT lead)` that opened in the range. Not additive across days. |
 | `open_rate` | `unique_open_count / unique_lead_count` |

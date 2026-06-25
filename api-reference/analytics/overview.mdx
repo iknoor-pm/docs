@@ -167,7 +167,7 @@ console.log(result);
 ## How these metrics are calculated
 
 <Note>
-  The rules below (inclusive date boundaries, send-date attribution, unique vs raw counts, and the rate formulas) are shared across every Global Analytics endpoint. See [How Analytics Metrics Are Calculated](/api-reference/analytics/how-metrics-are-calculated) for the full explanation.
+  The rules below (inclusive date boundaries, unique vs raw counts, the rate formulas, and how positive replies are counted) are shared across every Global Analytics endpoint. See [How Analytics Metrics Are Calculated](/api-reference/analytics/how-metrics-are-calculated) for the full explanation.
 </Note>
 
 The fields in `overall_stats` are not all the same kind of number. Some are raw event counts and some are unique (deduplicated) counts, and this affects how they behave across date ranges.
@@ -199,7 +199,7 @@ The fields in `overall_stats` are not all the same kind of number. Some are raw 
 </ResponseField>
 
 <ResponseField name="positive_replied" type="number">
-  Count of **distinct leads tagged as positive** (`sentiment_type = 'positive'`), attributed to the **send date** of their email — no reply-event requirement. This uses the same definition as the single-campaign analytics page, so the tile, the day-wise positive chart, and the campaign page all reconcile. A positive reply that arrives later is counted on the day its email was sent.
+  Count of **distinct leads tagged as positive** (`sentiment_type = 'positive'`) that sent a genuine reply (replied, not ignored, not bounced), attributed to the **date the reply was received**, within the range. Because it's a distinct-lead count deduplicated across the range, it is **not additive** — summing per-day calls over-counts. The lead category is mutable, so re-categorising a lead changes historical counts.
 </ResponseField>
 
 ### Rates
