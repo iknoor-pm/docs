@@ -33,7 +33,8 @@ sent_time >= 'start_date 00:00:00' AND sent_time <= 'end_date 23:59:59'
 
 Every record is anchored to a point in time. Endpoints differ in **which timestamp** they filter and group by:
 
-- **Send date** (`sent_time`) — the day the email went out. This is the default axis for `sent`, `opened`, `replied`, `bounced`, and **positive replies** (see below). The `*-by-sent-time` endpoints make this explicit.
+- **Send date** (`sent_time`) — the day the email went out. This is the axis for `sent`, `opened`, `replied`, and `bounced`. The `*-by-sent-time` endpoints make this explicit, including for positive replies.
+- **Reply date** (`reply_time`) — the day the reply came in. This is the default axis for **positive replies** on the `overall-stats-v2` tile and `day-wise-positive-reply-stats` (see [How positive replies are counted](#how-positive-replies-are-counted) below).
 - **Event date** — some day-wise breakdowns bucket opens by open time and replies by reply time, so each metric lands on the day the event happened.
 
 When comparing two endpoints that look similar, check which axis each uses — a reply that arrives days after the send lands on a different day depending on the axis.
@@ -54,12 +55,18 @@ All rates are percentages computed against the **unique** counts, not raw sends:
   `bounce_rate` is calculated per **unique lead** (`bounced / unique_lead_count`), not per email sent. If you want the deliverability-style figure (`bounced / sent`), the raw `bounced` and `sent` counts are both in the response and you can compute it yourself.
 </Note>
 
-## Positive replies
+## How positive replies are counted
 
-A **positive reply** is counted as a **distinct lead whose category sentiment is `positive`** (`lead_categories.sentiment_type = 'positive'`), attributed to the **send date** of that lead's email.
+A **positive reply** is a lead whose lead-category sentiment is **positive** (`lead_categories.sentiment_type = 'positive'`), tied to a **genuine reply** — one that actually replied, is not marked ignored, and did not bounce.
 
-There is **no reply-event requirement** in the count — it is purely the set of leads currently tagged positive, on the same send-date axis as `sent` and `replied`. This is the same definition the single-campaign analytics page uses, so the headline tile, the day-wise positive chart, and the campaign page all reconcile.
+Three things vary by endpoint, and getting them mixed up is the usual reason two positive-reply numbers don't agree:
+
+- **Reply-date vs send-date attribution.** Most surfaces (the `overall-stats-v2` tile and `day-wise-positive-reply-stats`) attribute a positive to the **date the reply was received**. The `*-by-sent-time` variant instead attributes it to the **date the email was sent**. A reply that arrives days after the send lands on a different day depending on which you use.
+- **Unique leads vs response events.** Most positive counts are **distinct leads** (a lead is counted once no matter how many times it replied). `campaign/response-stats` is the exception — it counts **response events**, so a lead replying twice counts twice. This is why its `total_positive_response` can be *higher* than the tile's `positive_replied`.
+- **Deduplication across the range.** Distinct-lead counts are deduplicated over the whole requested range, so they are **not additive** — summing single-day calls over-counts. Always query the exact date range you want.
 
 <Note>
-  Because positives are attributed to **send date** (not reply-received date), a positive reply that arrives later is counted on the day its email was originally sent — exactly like `replied` already behaves. Re-categorising a lead (e.g. marking it positive later) will change historical days, since the count reflects the lead's current category.
+  The lead category is **mutable**: re-categorising a lead (marking it positive, or changing it later) changes historical counts, because the number reflects each lead's *current* category, not what it was on the reply date.
 </Note>
+
+See each endpoint's own page for its exact attribution — they are deliberately not all the same.
